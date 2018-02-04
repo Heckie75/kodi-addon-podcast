@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.audio.podcasts" name="RSS Podcasts"
+	version="0.0.1" provider-name="Heckie">
+	<requires>
+		<import addon="xbmc.python" version="2.25.0" />
+		<import addon="xmbc.gui" version="5.12.0" />
+		<import addon="xmbc.json" version="7.0.0" />
+		<import addon="xmbc.metadata" version="2.1.0" />
+		<import addon="xmbc.addon" version="17.0.0" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>audio</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en_gb">RSS Podcasts in KODI</summary>
+		<description lang="en_gb">RSS Podcasts in KODI</description>
+		<disclaimer lang="en_gb"></disclaimer>
+		<language></language>
+		<platform>all</platform>
+		<license></license>
+		<forum></forum>
+		<website></website>
+		<email></email>
+		<source></source>
+		<news></news>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.png</fanart>
+			<screenshot>resources/assets/screen_01_overview.png</screenshot>
+		</assets>
+	</extension>
+</addon>
