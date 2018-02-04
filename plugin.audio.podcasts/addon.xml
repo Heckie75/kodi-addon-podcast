@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.audio.podcasts" name="RSS Podcasts"
-	version="0.0.1" provider-name="Heckie">
+<addon id="plugin.audio.podcasts" name="RSS Podcasts" version="2.0.0" provider-name="Heckie">
 	<requires>
-		<import addon="xbmc.python" version="2.25.0" />
-		<import addon="xmbc.gui" version="5.12.0" />
-		<import addon="xmbc.json" version="7.0.0" />
-		<import addon="xmbc.metadata" version="2.1.0" />
-		<import addon="xmbc.addon" version="17.0.0" />
+		<import addon="xbmc.python" version="3.0.0" />
+		<import addon="script.module.requests" version="2.25.1" />
+		<import addon="script.module.xmltodict" version="0.12.0+matrix.2" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="addon.py">
-		<provides>audio</provides>
+		<provides>audio video</provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en_gb">RSS Podcasts in KODI</summary>
-		<description lang="en_gb">RSS Podcasts in KODI</description>
-		<disclaimer lang="en_gb"></disclaimer>
-		<language></language>
+		<summary lang="en_GB">RSS Podcasts in KODI</summary>
+		<description lang="en_GB">RSS Podcasts in KODI</description>
+		<language>de_de</language>
+		<language>en_gb</language>
 		<platform>all</platform>
-		<license></license>
-		<forum></forum>
-		<website></website>
-		<email></email>
-		<source></source>
-		<news></news>
+		<license>MIT</license>
+		<website>https://github.com/Heckie75/kodi-addon-podcast</website>
+		<source>https://github.com/Heckie75/kodi-addon-podcast</source>
+		<news>
+v2.0.0 (2021-02-20)
+- Migration to Kodi 19 (Matrix)</news>
 		<assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.png</fanart>
-			<screenshot>resources/assets/screen_01_overview.png</screenshot>
+			<icon>resources/assets/icon.png</icon>
+			<fanart>resources/assets/fanart.png</fanart>
+			<screenshot>resources/assets/screenshot_01.png</screenshot>
+			<screenshot>resources/assets/screenshot_02.png</screenshot>
+			<screenshot>resources/assets/screenshot_03.png</screenshot>
+			<screenshot>resources/assets/screenshot_04.png</screenshot>
+			<screenshot>resources/assets/screenshot_05.png</screenshot>
 		</assets>
 	</extension>
 </addon>
