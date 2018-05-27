@@ -3,10 +3,6 @@
 	version="0.0.1" provider-name="Heckie">
 	<requires>
 		<import addon="xbmc.python" version="2.25.0" />
-		<import addon="xmbc.gui" version="5.12.0" />
-		<import addon="xmbc.json" version="7.0.0" />
-		<import addon="xmbc.metadata" version="2.1.0" />
-		<import addon="xmbc.addon" version="17.0.0" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="addon.py">
 		<provides>audio</provides>
