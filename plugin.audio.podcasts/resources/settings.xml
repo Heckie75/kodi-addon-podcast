@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
 
+  <category label="OPML File">
+
+    <setting label="OPML File 1" type="file" id="opml_file_0" />
+    <setting label="OPML File 2" type="file" id="opml_file_1" />
+    <setting label="OPML File 3" type="file" id="opml_file_2" />
+    <setting label="OPML File 4" type="file" id="opml_file_3" />
+    <setting label="OPML File 5" type="file" id="opml_file_4" />
+    <setting label="OPML File 6" type="file" id="opml_file_5" />
+    <setting label="OPML File 7" type="file" id="opml_file_6" />
+    <setting label="OPML File 8" type="file" id="opml_file_7" />
+    <setting label="OPML File 9" type="file" id="opml_file_8" />
+    <setting label="OPML File 10" type="file" id="opml_file_9" />
+
+  </category>
+
   <category label="Group 1">
 
     <setting label="Enable" type="bool" id="group_0_enable" default="true" />

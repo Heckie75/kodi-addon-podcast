@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 # -*- coding: utf-8 -*-
 
 from datetime import datetime
@@ -33,6 +33,36 @@ class Mediathek:
     def __init__(self):
 
         groups = []
+
+        # build opml feeds
+        for g in range(self._GROUPS):
+
+            if settings.getSetting("opml_file_%i" % g) == "":
+                continue
+
+            path = os.path.join(addon_dir, settings.getSetting("opml_file_%i" % g))
+            opml_data = self._load_opml(path)
+            try:
+                for o in opml_data["opml"]["body"]["outline"]:
+                    if o["@type"] == "rss":
+                        groups += [{
+                            "path" : "opml_%i" % g,
+                            "name" : o["@title"],
+                            "params" : [
+                                {
+                                    "call" : "renderRss",
+                                    "url" : o["@xmlUrl"]
+                                }
+                            ],
+                            "node" : []
+                        }]
+
+            except:
+                xbmc.log("Cannot parse opml file %s" % path, xbmc.LOGNOTICE)
+                pass
+
+
+        # build groups acc. settings
         for g in range(self._GROUPS):
 
             if settings.getSetting("group_%i_enable" % g) == "false":
@@ -74,6 +104,17 @@ class Mediathek:
         ]
 
 
+    def _load_opml(self, path):
+
+        try:
+            with open(path) as _opml_file:
+                _data = _opml_file.read()
+                return xmltodict.parse(_data)
+        except:
+            xbmc.log("Cannot open opml file", xbmc.LOGNOTICE)
+            return None
+
+
     def _loadRss(self, url):
 
         _file = urllib2.urlopen(url)
@@ -81,7 +122,6 @@ class Mediathek:
         _file.close()
 
         return xmltodict.parse(_data)
-
 
 
     def _load_rss_feed(self, url):
@@ -144,7 +184,7 @@ class Mediathek:
                     "params" : [
                         {
                             "call" : "playRss",
-						    "index" : str(index),
+                            "index" : str(index),
                             "url" : url
                         }
                     ],

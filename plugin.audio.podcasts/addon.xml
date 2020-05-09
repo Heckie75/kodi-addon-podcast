@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.audio.podcasts" name="RSS Podcasts"
-	version="0.0.1" provider-name="Heckie">
+	version="0.0.2" provider-name="Heckie">
 	<requires>
 		<import addon="xbmc.python" version="2.25.0" />
 	</requires>
