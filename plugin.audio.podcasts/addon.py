@@ -130,7 +130,7 @@ class Mediathek:
 
         channel = rss_feed["rss"]["channel"]
 
-        if "image" in channel:
+        if "image" in channel and "url" in channel["image"]:
             image = channel["image"]["url"]
         elif "itunes:image" in channel:
             image = channel["itunes:image"]["@href"]
