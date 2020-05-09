@@ -43,10 +43,11 @@ class Mediathek:
             path = os.path.join(addon_dir, settings.getSetting("opml_file_%i" % g))
             opml_data = self._load_opml(path)
             try:
+                entries = []
                 for o in opml_data["opml"]["body"]["outline"]:
                     if o["@type"] == "rss":
-                        groups += [{
-                            "path" : "opml_%i" % g,
+                        entries += [{
+                            "path" : "opml_file_%i_%i" % (g, len(entries)),
                             "name" : o["@title"],
                             "params" : [
                                 {
@@ -56,6 +57,12 @@ class Mediathek:
                             ],
                             "node" : []
                         }]
+
+                groups += [{
+                    "path" : "opml_file_%i" % g,
+                    "name" : opml_data["opml"]["head"]["title"],
+                    "node" : entries
+                }]
 
             except:
                 xbmc.log("Cannot parse opml file %s" % path, xbmc.LOGNOTICE)
