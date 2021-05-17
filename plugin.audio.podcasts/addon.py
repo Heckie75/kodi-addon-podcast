@@ -19,6 +19,11 @@ __PLUGIN_ID__ = "plugin.audio.podcasts"
 _MONTHS = ["Jan", "Feb", "Mar", "Apr", "May",
            "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
+GPODDER_API = {
+    "login": "https://gpodder.net/api/2/auth/%s/login.json",
+    "subscriptions": "https://gpodder.net/subscriptions/%s.%s"
+}
+
 settings = xbmcaddon.Addon(id=__PLUGIN_ID__)
 addon_dir = xbmcvfs.translatePath(settings.getAddonInfo('path'))
 
@@ -37,88 +42,43 @@ class Mediathek:
     _GROUPS = 10
     _ENTRIES = 10
 
-    _menu = None
-
     addon_handle = None
 
     def __init__(self):
 
-        groups = []
+        pass
 
-        # build opml feeds
-        for g in range(self._GROUPS):
+    def _parse_outlines_from_opml(self, outline):
 
-            if settings.getSetting("opml_file_%i" % g) == "":
+        if type(outline) is not list:
+            outline = [outline]
+
+        entries = []
+        for o in outline:
+            name = o["@title"] if "@title" in o else o["@text"]
+            if not name:
                 continue
 
-            path = os.path.join(
-                addon_dir, settings.getSetting("opml_file_%i" % g))
-            opml_data = self._load_opml(path)
-            try:
-                entries = []
-                for o in opml_data["opml"]["body"]["outline"]:
-                    if o["@type"] == "rss":
-                        entries += [{
-                            "path": "%i/%i" % (g, len(entries)),
-                            "name": o["@title"],
-                            "params": [
-                                {
-                                    "rss": o["@xmlUrl"]
-                                }
-                            ],
-                            "node": []
-                        }]
+            subpath = urllib.parse.quote(name)
 
-                groups += [{
-                    "path": "opml-%i" % g,
-                    "name": opml_data["opml"]["head"]["title"],
-                    "node": entries
-                }]
-
-            except:
-                xbmc.log("Cannot parse opml file %s" % path, xbmc.LOGERROR)
-                pass
-
-        # build groups acc. settings
-        for g in range(self._GROUPS):
-
-            if settings.getSetting("group_%i_enable" % g) == "false":
-                continue
-
-            entries = []
-            for e in range(self._ENTRIES):
-
-                if settings.getSetting("group_%i_rss_%i_enable" % (g, e)) == "false":
-                    continue
-
-                icon = settings.getSetting("group_%i_rss_%i_icon"
-                                           % (g, e))
-
-                entries += [{
-                    "path": "%i" % e,
-                    "name": settings.getSetting("group_%i_rss_%i_name"
-                                                % (g, e)),
-                    "params": [
-                        {
-                            "rss": settings.getSetting("group_%i_rss_%i_url" % (g, e))
-                        }
-                    ],
-                    "icon": icon,
-                    "node": []
-                }]
-
-            groups += [{
-                "path": "pod-%i" % g,
-                "name": settings.getSetting("group_%i_name" % g),
-                "node": entries
-            }]
-
-        self._menu = [
-            {  # root
-                "path": "",
-                "node": groups
+            entry = {
+                "path": subpath,
+                "name": name,
+                "node": []
             }
-        ]
+
+            if "@type" in o and o["@type"] == "rss" and "@xmlUrl" in o:
+                entry["params"] = [{
+                    "rss": o["@xmlUrl"]
+                }]
+                entries.append(entry)
+
+            elif "outline" in o:
+                entry["node"] = self._parse_outlines_from_opml(
+                    o["outline"])
+                entries.append(entry)
+
+        return entries
 
     def _play_latest(self, url):
 
@@ -136,14 +96,17 @@ class Mediathek:
 
         li = xbmcgui.ListItem(label=item["name"])
 
-        if "name2" in item:
-            li.setProperty("label2", item["name2"])
+        if "description" in item:
+            li.setProperty("label2", item["description"])
 
         if "stream_url" in item:
             li.setPath(item["stream_url"])
 
         if "type" in item:
-            li.setInfo(item["type"], {"Title": item["name"]})
+            li.setInfo(item["type"], {
+                       "Title": item["name"],
+                       "plot": item["description"] if "description" in item else ""
+                       })
 
         if "icon" in item and item["icon"]:
             li.setArt({"icon": item["icon"]})
@@ -163,7 +126,7 @@ class Mediathek:
 
         return li
 
-    def _add_list_item(self, entry, path, playable=False):
+    def _add_list_item(self, entry, path):
 
         def _build_param_string(params, current=""):
 
@@ -191,44 +154,44 @@ class Mediathek:
 
         li = self._create_list_item(entry)
 
-        is_folder = "node" in entry
-        if not is_folder and "stream_url" in entry:
+        if "stream_url" in entry:
             url = entry["stream_url"]
-            playable = True
+
         else:
             url = "".join(
                 ["plugin://", __PLUGIN_ID__, item_path, param_string])
 
-        if playable:
-            li.setProperty("IsPlayable", "true")
+        is_folder = "node" in entry
+        li.setProperty("IsPlayable", "false" if is_folder else "true")
 
         xbmcplugin.addDirectoryItem(handle=self.addon_handle,
                                     listitem=li,
                                     url=url,
                                     isFolder=is_folder)
 
-    def _request_get(self, url):
+    def _http_request(self, url, headers={}, method="GET"):
 
         useragent = f"{settings.getAddonInfo('id')}/{settings.getAddonInfo('version')} (Kodi/{xbmc.getInfoLabel('System.BuildVersionShort')})"
-        headers = {'User-Agent': useragent}
-        res = requests.get(url, headers=headers)
+        headers["User-Agent"] = useragent
+
+        if method == "GET":
+            res = requests.get(url, headers=headers)
+        elif method == "POST":
+            res = requests.post(url, headers=headers)
+        else:
+            raise HttpStatusError(
+                "HTTP Method %s not supported" % method)
 
         if res.status_code == 200:
-            return res.text
+            if res.encoding:
+                text = res.text.encode(res.encoding).decode("utf-8")
+            else:
+                text = res.text
+            return text, res.cookies
 
         else:
             raise HttpStatusError(
                 "Unexpected HTTP Status %i for %s" % (res.status_code, url))
-
-    def _load_opml(self, path):
-
-        try:
-            with open(path) as _opml_file:
-                _data = _opml_file.read()
-                return xmltodict.parse(_data)
-        except:
-            xbmc.log("Cannot open opml file", xbmc.LOGERROR)
-            return None
 
     def _load_rss(self, url):
 
@@ -265,14 +228,14 @@ class Mediathek:
 
             return {
                 "name": _ci["title"],
-                "name2": _ci["description"] if "description" in _ci else "",
+                "description": _ci["description"] if "description" in _ci else "",
                 "date": pubDate,
                 "icon": item_image,
                 "stream_url": stream_url,
                 "type": _type
             }
 
-        res = self._request_get(url)
+        res, cookies = self._http_request(url)
         if res.startswith("<?xml"):
             rss_feed = xmltodict.parse(res)
 
@@ -329,7 +292,7 @@ class Mediathek:
                 entry = {
                     "path": "latest",
                     "name": "%s (%s)" % (title, settings.getLocalizedString(32052)),
-                    "name2": description,
+                    "description": description,
                     "icon": image,
                     "date": datetime.now(),
                     "specialsort": "top",
@@ -340,7 +303,7 @@ class Mediathek:
                         }
                     ]
                 }
-                self._add_list_item(entry, path, playable=True)
+                self._add_list_item(entry, path)
 
             for item in items:
                 li = self._create_list_item(item)
@@ -354,15 +317,15 @@ class Mediathek:
                     self.addon_handle, xbmcplugin.SORT_METHOD_DATE)
             xbmcplugin.endOfDirectory(self.addon_handle)
 
-    def _browse(self, path):
+    def _browse(self, dir_structure, path, updateListing=False):
 
         def _get_node_by_path(path):
 
             if path == "/":
-                return self._menu[0]
+                return dir_structure[0]
 
             tokens = path.split("/")[1:]
-            node = self._menu[0]
+            node = dir_structure[0]
 
             while len(tokens) > 0:
                 path = tokens.pop(0)
@@ -377,7 +340,87 @@ class Mediathek:
         for entry in node["node"]:
             self._add_list_item(entry, path)
 
-        xbmcplugin.endOfDirectory(self.addon_handle)
+        xbmcplugin.endOfDirectory(
+            self.addon_handle, updateListing=updateListing)
+
+    def _parse_opml(self, data):
+
+        opml_data = xmltodict.parse(data)
+
+        entries = self._parse_outlines_from_opml(
+            opml_data["opml"]["body"]["outline"])
+
+        return opml_data["opml"]["head"]["title"], entries
+
+    def _open_opml_file(self, path):
+
+        with open(path) as _opml_file:
+            return _opml_file.read()
+
+    def _build_dir_structure(self):
+
+        groups = []
+
+        # opml files / podcasts lists
+        for g in range(self._GROUPS):
+
+            if settings.getSetting("opml_file_%i" % g) == "":
+                continue
+
+            path = os.path.join(
+                addon_dir, settings.getSetting("opml_file_%i" % g))
+
+            try:
+                name, nodes = self._parse_opml(self._open_opml_file(path))
+                groups.append({
+                    "path": "opml-%i" % g,
+                    "name": name,
+                    "node": nodes
+                })
+
+            except:
+                xbmc.log("Cannot read opml file %s" % path, xbmc.LOGERROR)
+
+        #  rss feeds from settings
+        for g in range(self._GROUPS):
+
+            if settings.getSetting("group_%i_enable" % g) == "false":
+                continue
+
+            entries = []
+            for e in range(self._ENTRIES):
+
+                if settings.getSetting("group_%i_rss_%i_enable" % (g, e)) == "false":
+                    continue
+
+                icon = settings.getSetting("group_%i_rss_%i_icon"
+                                           % (g, e))
+
+                entries += [{
+                    "path": "%i" % e,
+                    "name": settings.getSetting("group_%i_rss_%i_name"
+                                                % (g, e)),
+                    "params": [
+                        {
+                            "rss": settings.getSetting("group_%i_rss_%i_url" % (g, e))
+                        }
+                    ],
+                    "icon": icon,
+                    "node": []
+                }]
+
+            groups += [{
+                "path": "pod-%i" % g,
+                "name": settings.getSetting("group_%i_name" % g),
+                "node": entries
+            }]
+
+        return [
+            {  # root
+                "path": "",
+                "node": groups
+            }
+        ]
 
     def handle(self, argv):
 
@@ -399,10 +442,149 @@ class Mediathek:
             self._play_latest(url)
 
         else:
-            self._browse(path=path)
+            xbmc.log(path, xbmc.LOGINFO)
+            _dir_structure = self._build_dir_structure()
+            self._browse(dir_structure=_dir_structure, path=path)
+
+    def _login_at_gpodder(self):
+
+        auth_string = "%s:%s" % (settings.getSetting(
+            "gpodder_username"), settings.getSetting("gpodder_password"))
+
+        b64auth = {
+            "Authorization": "Basic %s" % base64.urlsafe_b64encode(auth_string.encode("utf-8")).decode("utf-8")
+        }
+        response, cookies = self._http_request(
+            GPODDER_API["login"] % settings.getSetting("gpodder_username"), b64auth, "POST")
+
+        if "sessionid" not in cookies:
+            raise HttpStatusError(
+                "Authentification at gPodder failed. Missing session")
+
+        return cookies["sessionid"]
+
+    def _load_gpodder_subscriptions(self, sessionid):
+
+        session_cookie = {
+            "Cookie": "%s=%s" % ("sessionid", sessionid)
+        }
+        response, cookies = self._http_request(
+            GPODDER_API["subscriptions"] % (settings.getSetting("gpodder_username"), "opml"), session_cookie)
+
+        return response
+
+    def _select_opml_file(self):
+
+        path = xbmcgui.Dialog().browse(
+            type=1, heading=settings.getLocalizedString(32070), shares="", mask=".opml")
+        if path == "":
+            return None, None
+
+        try:
+            return self._parse_opml(self._open_opml_file(path))
+
+        except:
+            xbmc.log("Cannot read opml file %s" % path, xbmc.LOGERROR)
+            return None, None
+
+    def _select_feeds(self, name, entries):
+
+        selection = [e["name"]
+                     for e in entries if "params" in e and len(e["params"]) == 1 and "rss" in e["params"][0]]
+
+        ok = False
+        while not ok:
+            feeds = xbmcgui.Dialog().multiselect(
+                settings.getLocalizedString(32071), selection)
+            if feeds == None:
+                ok = True
+            elif len(feeds) == 0:
+                xbmcgui.Dialog().ok(settings.getLocalizedString(32072),
+                                    settings.getLocalizedString(32073))
+            elif len(feeds) > self._ENTRIES:
+                xbmcgui.Dialog().ok(settings.getLocalizedString(32074),
+                                    settings.getLocalizedString(32075))
+            else:
+                ok = True
+
+        return feeds
+
+    def _select_target_group(self):
+
+        selection = ["Gruppe %i: %s" % (g + 1, settings.getSetting("group_%i_name"
+                                                                   % g) or "no name") for g in range(self._GROUPS)]
+        return xbmcgui.Dialog().select(settings.getLocalizedString(32076), selection)
+
+    def _confirm_to_group(self, entries, group, feeds):
+
+        ok = xbmcgui.Dialog().yesno(settings.getLocalizedString(32077),
+                                    message=settings.getLocalizedString(32078))
+        if ok:
+            settings.setSetting("group_%i_enable" % group, "true")
+            for i in range(self._ENTRIES):
+                settings.setSetting("group_%i_rss_%i_enable" % (
+                    group, i), "true" if i < len(feeds) else "false")
+                settings.setSetting("group_%i_rss_%i_name" % (
+                    group, i), entries[feeds[i]]["name"] if i < len(feeds) else "")
+                settings.setSetting("group_%i_rss_%i_url" % (
+                    group, i), entries[feeds[i]]["params"][0]["rss"] if i < len(feeds) else "")
+                settings.setSetting("group_%i_rss_%i_icon" % (group, i), "")
+
+    def import_opml(self):
+
+        # Step 1: Select file
+        name, entries = self._select_opml_file()
+        if name == None:
+            return
+
+        # Step 2: Select feeds
+        feeds = self._select_feeds(name, entries)
+        if feeds == None:
+            return
+
+        # Step 3: Select target group
+        group = self._select_target_group()
+        if group == -1:
+            return
+
+        # Step 4: Confirm
+        self._confirm_to_group(entries, group, feeds)
+
+    def import_gpodder_subscriptions(self):
+
+        # Step 1: query subscriptions from gPodder
+        try:
+            sessionid = self._login_at_gpodder()
+            name, entries = self._parse_opml(
+                self._load_gpodder_subscriptions(sessionid))
+
+        except HttpStatusError as error:
+            xbmcgui.Dialog().ok("HTTP Status Error", error.message)
+            return
+
+        # Step 2: Select feeds
+        feeds = self._select_feeds(name, entries)
+        if feeds == None:
+            return
+
+        # Step 3: Select target group
+        group = self._select_target_group()
+        if group == -1:
+            return
+
+        # Step 4: Confirm
+        self._confirm_to_group(entries, group, feeds)
 
 
 if __name__ == '__main__':
 
     mediathek = Mediathek()
-    mediathek.handle(sys.argv)
+
+    if sys.argv[1] == "import_gpodder_subscriptions":
+        mediathek.import_gpodder_subscriptions()
+
+    elif sys.argv[1] == "import_opml":
+        mediathek.import_opml()
+
+    else:
+        mediathek.handle(sys.argv)

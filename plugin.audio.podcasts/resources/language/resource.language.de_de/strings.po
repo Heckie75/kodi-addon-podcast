@@ -13,6 +13,10 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgctxt "#32000"
+msgid "Group"
+msgstr "Gruppe"
+
 msgctxt "#32001"
 msgid "Group 1"
 msgstr "Gruppe 1"
@@ -94,8 +98,8 @@ msgid "OPML File 10"
 msgstr "OPML Datei 10"
 
 msgctxt "#32021"
-msgid "OPML File"
-msgstr "OPML Datei"
+msgid "OPML Files"
+msgstr "OPML Dateien"
 
 msgctxt "#32022"
 msgid "URL"
@@ -147,8 +151,72 @@ msgstr "Allgemein"
 
 msgctxt "#32051"
 msgid "Anchor for most recent podcast, e.g. for bookmarking"
-msgstr "Anker für neueste Sendung, z.B. zum Bookmarken"
+msgstr "Anker für aktuelle Sendung, z.B. zum Bookmarken"
 
 msgctxt "#32052"
 msgid "Newest episode"
-msgstr "neueste Sendung"
+msgstr "aktuelle Sendung"
+
+msgctxt "#32060"
+msgid "Import"
+msgstr "Importieren"
+
+msgctxt "#32061"
+msgid "gPodder.net"
+msgstr "gPodder.net"
+
+msgctxt "#32062"
+msgid "Username"
+msgstr "Benutzername"
+
+msgctxt "#32063"
+msgid "Password"
+msgstr "Passwort"
+
+msgctxt "#32064"
+msgid "Import subscriptions to group"
+msgstr "Subskriptionen in eine Gruppe importieren"
+
+msgctxt "#32065"
+msgid "Import podcast list as OPML File"
+msgstr "Podcast Liste als OPML Datei importieren"
+
+msgctxt "#32066"
+msgid "Import from OPML File to group"
+msgstr "OPML Datei zu Gruppe importieren"
+
+msgctxt "#32070"
+msgid "Select OPML file"
+msgstr "Wähle OPML Datei für Import"
+
+msgctxt "#32071"
+msgid "Select feeds"
+msgstr "Wähle RSS Feeds für den Import aus"
+
+msgctxt "#32072"
+msgid "No feeds selected!"
+msgstr "Keine Feeds ausgewählt!"
+
+msgctxt "#32073"
+msgid "You must select at least one feed."
+msgstr "Du musst mindestens einen Feed auswählen."
+
+msgctxt "#32074"
+msgid "Too many feeds selected!"
+msgstr "Zu viele Feeds ausgewählt!"
+
+msgctxt "#32075"
+msgid "Do no select more than 10 feeds."
+msgstr "Es dürfen nicht mehr als 10 Feeds ausgewählt werden."
+
+msgctxt "#32076"
+msgid "Select group for import"
+msgstr "Wähle die Gruppe aus, in die importiert werden soll."
+
+msgctxt "#32077"
+msgid "Do you want to import feeds?"
+msgstr "Möchtest Du jetzt die Feeds importieren?"
+
+msgctxt "#32078"
+msgid "Do you want to import feeds? Note that group will be totally replaced."
+msgstr "Möchtest Du jetzt die Feeds importieren? Beachte, dass die Gruppe vollständig ersetzt wird."
