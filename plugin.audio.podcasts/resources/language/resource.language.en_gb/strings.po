@@ -98,125 +98,165 @@ msgid "OPML File 10"
 msgstr ""
 
 msgctxt "#32021"
-msgid "OPML File"
+msgid "OPML Files"
 msgstr ""
 
 msgctxt "#32022"
 msgid "URL"
-msgstr "URL"
+msgstr ""
 
 msgctxt "#32031"
 msgid "Podcast 1"
-msgstr "Podcast 1"
+msgstr ""
 
 msgctxt "#32032"
 msgid "Podcast 2"
-msgstr "Podcast 2"
+msgstr ""
 
 msgctxt "#32033"
 msgid "Podcast 3"
-msgstr "Podcast 3"
+msgstr ""
 
 msgctxt "#32034"
 msgid "Podcast 4"
-msgstr "Podcast 4"
+msgstr ""
 
 msgctxt "#32035"
 msgid "Podcast 5"
-msgstr "Podcast 5"
+msgstr ""
 
 msgctxt "#32036"
 msgid "Podcast 6"
-msgstr "Podcast 6"
+msgstr ""
 
 msgctxt "#32037"
 msgid "Podcast 7"
-msgstr "Podcast 7"
+msgstr ""
 
 msgctxt "#32038"
 msgid "Podcast 8"
-msgstr "Podcast 8"
+msgstr ""
 
 msgctxt "#32039"
 msgid "Podcast 9"
-msgstr "Podcast 9"
+msgstr ""
 
 msgctxt "#32040"
 msgid "Podcast 10"
-msgstr "Podcast 10"
+msgstr ""
 
 msgctxt "#32050"
 msgid "General"
-msgstr "General"
+msgstr ""
 
 msgctxt "#32051"
-msgid "Anchor for most recent podcast, e.g. for bookmarking"
-msgstr "Anchor for most recent podcast, e.g. for bookmarking"
+msgid "Anchor for most recent podcast (good for bookmarking)"
+msgstr ""
 
 msgctxt "#32052"
-msgid "Newest episode"
-msgstr "Newest episode"
+msgid "Most recent episode"
+msgstr ""
+
+msgctxt "#32053"
+msgid "Untitled podcast from"
+msgstr ""
 
 msgctxt "#32060"
 msgid "Import"
-msgstr "Import"
+msgstr ""
 
 msgctxt "#32061"
 msgid "gPodder.net"
-msgstr "gPodder.net"
+msgstr ""
 
 msgctxt "#32062"
 msgid "Username"
-msgstr "Username"
+msgstr ""
 
 msgctxt "#32063"
 msgid "Password"
-msgstr "Password"
+msgstr ""
 
 msgctxt "#32064"
 msgid "Import subscriptions to group"
-msgstr "Import subscriptions to group"
+msgstr ""
 
 msgctxt "#32065"
 msgid "Import podcast list as OPML File"
-msgstr "Import podcast list as OPML File"
+msgstr ""
 
 msgctxt "#32066"
 msgid "Import from OPML File to group"
-msgstr "Import from OPML File to group"
+msgstr ""
+
+msgctxt "#32067"
+msgid "Hostname"
+msgstr ""
 
 msgctxt "#32070"
 msgid "Select OPML file"
-msgstr "Select OPML file"
+msgstr ""
 
 msgctxt "#32071"
 msgid "Select feeds"
-msgstr "Select feeds"
+msgstr ""
 
 msgctxt "#32072"
-msgid "No feeds selected!"
-msgstr "No feeds selected!"
+msgid "No feeds selected"
+msgstr ""
 
 msgctxt "#32073"
 msgid "You must select at least one feed."
 msgstr "You must select at least one feed."
 
 msgctxt "#32074"
-msgid "Too many feeds selected!"
-msgstr "Too many feeds selected!"
+msgid "Too many feeds selected"
+msgstr ""
 
 msgctxt "#32075"
-msgid "Do no select more than 10 feeds."
-msgstr "Do no select more than 10 feeds."
+msgid "Do not select more than %i feeds."
+msgstr ""
 
 msgctxt "#32076"
 msgid "Select group for import"
-msgstr "Select group for import"
+msgstr ""
 
 msgctxt "#32077"
-msgid "Do you want to import feeds?"
-msgstr "Do you want to import feeds?"
+msgid "free slots"
+msgstr ""
 
 msgctxt "#32078"
-msgid "Do you want to import feeds? Note that group will be totally replaced."
-msgstr "Do you want to import feeds? Note that group will be totally replaced."
+msgid "No free slots in group left"
+msgstr ""
+
+msgctxt "#32079"
+msgid "Assign OPML File?"
+msgstr ""
+
+msgctxt "#32080"
+msgid "Select folder for download"
+msgstr ""
+
+msgctxt "#32081"
+msgid "Saving OPML file failed"
+msgstr ""
+
+msgctxt "#32082"
+msgid "Saving OPML file failed for unknown reason."
+msgstr ""
+
+msgctxt "#32083"
+msgid "Saved as"
+msgstr ""
+
+msgctxt "#32084"
+msgid "Select a different group or disable slots in this group first."
+msgstr ""
+
+msgctxt "#32085"
+msgid "RSS Podcast"
+msgstr ""
+
+msgctxt "#32086"
+msgid "Operations completed."
+msgstr ""

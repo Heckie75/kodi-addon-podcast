@@ -20,8 +20,8 @@ _MONTHS = ["Jan", "Feb", "Mar", "Apr", "May",
            "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 GPODDER_API = {
-    "login": "https://gpodder.net/api/2/auth/%s/login.json",
-    "subscriptions": "https://gpodder.net/subscriptions/%s.%s"
+    "login": "%s/api/2/auth/%s/login.json",
+    "subscriptions": "%s/subscriptions/%s.%s"
 }
 
 settings = xbmcaddon.Addon(id=__PLUGIN_ID__)
@@ -56,8 +56,12 @@ class Mediathek:
         entries = []
         for o in outline:
             name = o["@title"] if "@title" in o else o["@text"]
-            if not name:
-                continue
+            if not name and "@xmlUrl" in o:
+                m = re.match(
+                    "^https?:\/\/([^\/]+).*\/?.*\/([^\/]+)\/?$", o["@xmlUrl"])
+                if m:
+                    name = "%s %s...%s" % (settings.getLocalizedString(
+                        32053), m.groups()[0][:20], m.groups()[1][-40:])
 
             subpath = urllib.parse.quote(name)
 
@@ -183,11 +187,7 @@ class Mediathek:
                 "HTTP Method %s not supported" % method)
 
         if res.status_code == 200:
-            if res.encoding:
-                text = res.text.encode(res.encoding).decode("utf-8")
-            else:
-                text = res.text
-            return text, res.cookies
+            return res.text, res.cookies
 
         else:
             raise HttpStatusError(
@@ -236,11 +236,12 @@ class Mediathek:
             }
 
         res, cookies = self._http_request(url)
-        if res.startswith("<?xml"):
-            rss_feed = xmltodict.parse(res)
 
-        else:
+        if not res.startswith("<?xml"):
             raise HttpStatusError("Unexpected content for podcast %s" % url)
+            
+        else:
+            rss_feed = xmltodict.parse(res)
 
         channel = rss_feed["rss"]["channel"]
 
@@ -442,7 +443,6 @@ class Mediathek:
             self._play_latest(url)
 
         else:
-            xbmc.log(path, xbmc.LOGINFO)
             _dir_structure = self._build_dir_structure()
             self._browse(dir_structure=_dir_structure, path=path)
 
@@ -455,7 +455,8 @@ class Mediathek:
             "Authorization": "Basic %s" % base64.urlsafe_b64encode(auth_string.encode("utf-8")).decode("utf-8")
         }
         response, cookies = self._http_request(
-            GPODDER_API["login"] % settings.getSetting("gpodder_username"), b64auth, "POST")
+            GPODDER_API["login"] % (settings.getSetting("gpodder_hostname"),
+                                    settings.getSetting("gpodder_username")), b64auth, "POST")
 
         if "sessionid" not in cookies:
             raise HttpStatusError(
@@ -469,14 +470,17 @@ class Mediathek:
             "Cookie": "%s=%s" % ("sessionid", sessionid)
         }
         response, cookies = self._http_request(
-            GPODDER_API["subscriptions"] % (settings.getSetting("gpodder_username"), "opml"), session_cookie)
+            GPODDER_API["subscriptions"] % (settings.getSetting("gpodder_hostname"),
+                                            settings.getSetting(
+                                                "gpodder_username"),
+                                            "opml"), session_cookie)
 
         return response
 
     def _select_opml_file(self):
 
         path = xbmcgui.Dialog().browse(
-            type=1, heading=settings.getLocalizedString(32070), shares="", mask=".opml")
+            type=1, heading=settings.getLocalizedString(32070), shares="", mask=".xml|.opml")
         if path == "":
             return None, None
 
@@ -487,7 +491,7 @@ class Mediathek:
             xbmc.log("Cannot read opml file %s" % path, xbmc.LOGERROR)
             return None, None
 
-    def _select_feeds(self, name, entries):
+    def _select_feeds(self, name, entries, freeslots):
 
         selection = [e["name"]
                      for e in entries if "params" in e and len(e["params"]) == 1 and "rss" in e["params"][0]]
@@ -501,9 +505,9 @@ class Mediathek:
             elif len(feeds) == 0:
                 xbmcgui.Dialog().ok(settings.getLocalizedString(32072),
                                     settings.getLocalizedString(32073))
-            elif len(feeds) > self._ENTRIES:
+            elif len(feeds) > freeslots:
                 xbmcgui.Dialog().ok(settings.getLocalizedString(32074),
-                                    settings.getLocalizedString(32075))
+                                    settings.getLocalizedString(32075) % freeslots)
             else:
                 ok = True
 
@@ -511,48 +515,117 @@ class Mediathek:
 
     def _select_target_group(self):
 
-        selection = ["Gruppe %i: %s" % (g + 1, settings.getSetting("group_%i_name"
-                                                                   % g) or "no name") for g in range(self._GROUPS)]
-        return xbmcgui.Dialog().select(settings.getLocalizedString(32076), selection)
+        names = list()
+        freeslots = list()
+        for g in range(self._GROUPS):
+            free = sum("false" == settings.getSetting(
+                "group_%i_rss_%i_enable" % (g, r)) for r in range(self._ENTRIES))
 
-    def _confirm_to_group(self, entries, group, feeds):
+            freeslots.append(free)
 
-        ok = xbmcgui.Dialog().yesno(settings.getLocalizedString(32077),
-                                    message=settings.getLocalizedString(32078))
-        if ok:
-            settings.setSetting("group_%i_enable" % group, "true")
-            for i in range(self._ENTRIES):
-                settings.setSetting("group_%i_rss_%i_enable" % (
-                    group, i), "true" if i < len(feeds) else "false")
-                settings.setSetting("group_%i_rss_%i_name" % (
-                    group, i), entries[feeds[i]]["name"] if i < len(feeds) else "")
+            names.append("%s %i: %s (%i %s)" %
+                         (
+                             settings.getLocalizedString(32000),
+                             g + 1,
+                             settings.getSetting("group_%i_name" % g),
+                             free,
+                             settings.getLocalizedString(32077)
+                         ))
+
+        selected = xbmcgui.Dialog().select(settings.getLocalizedString(32076), names)
+        if selected > -1 and freeslots[selected] == 0:
+            xbmcgui.Dialog().ok(heading=settings.getLocalizedString(32078),
+                                message=settings.getLocalizedString(32084))
+            return -1, 0
+
+        elif selected == -1:
+            return -1, 0
+
+        else:
+            return selected, freeslots[selected]
+
+    def _apply_to_group(self, entries, group, feeds):
+
+        settings.setSetting("group_%i_enable" % group, "True")
+
+        i, j = 0, 0
+        while(i < self._ENTRIES):
+
+            if j < len(feeds) and "false" == settings.getSetting("group_%i_rss_%i_enable" % (group, i)):
+                settings.setSetting("group_%i_rss_%i_enable" %
+                                    (group, i), "True")
+                settings.setSetting("group_%i_rss_%i_name" %
+                                    (group, i), entries[feeds[j]]["name"])
                 settings.setSetting("group_%i_rss_%i_url" % (
-                    group, i), entries[feeds[i]]["params"][0]["rss"] if i < len(feeds) else "")
+                    group, i), entries[feeds[j]]["params"][0]["rss"])
                 settings.setSetting("group_%i_rss_%i_icon" % (group, i), "")
+                j += 1
+
+            i += 1
+
+    def _save_opml_file(self, data):
+
+        opml = xmltodict.parse(data)
+        filename = "%s.opml" % re.sub(
+            "[^A-Za-z0-9']", " ", opml["opml"]["head"]["title"])
+
+        path = xbmcgui.Dialog().browse(
+            type=3, heading=settings.getLocalizedString(32070), shares="")
+
+        if not path:
+            return None, None
+
+        try:
+            fullpath = "%s%s" % (path, filename)
+            with open(fullpath, "w") as _file:
+                _file.write(data)
+
+            return fullpath, filename
+
+        except:
+            xbmcgui.Dialog().ok(heading=settings.getLocalizedString(
+                32081), message=settings.getLocalizedString(32082))
+
+            return None, None
+
+    def _select_target_opml_slot(self, filename):
+
+        selection = ["%s %i" % (settings.getLocalizedString(
+            32021), g + 1) for g in range(self._GROUPS)]
+        return xbmcgui.Dialog().select(settings.getLocalizedString(32079), selection)
 
     def import_opml(self):
 
-        # Step 1: Select file
+        # Step 1: Select target group
+        group, freeslots = self._select_target_group()
+        if group == -1:
+            return
+
+        # Step 2: Select file
         name, entries = self._select_opml_file()
         if name == None:
             return
 
-        # Step 2: Select feeds
-        feeds = self._select_feeds(name, entries)
+        # Step 3: Select feeds
+        feeds = self._select_feeds(name, entries, freeslots)
         if feeds == None:
             return
 
-        # Step 3: Select target group
-        group = self._select_target_group()
-        if group == -1:
-            return
-
         # Step 4: Confirm
-        self._confirm_to_group(entries, group, feeds)
+        self._apply_to_group(entries, group, feeds)
+
+        # Success
+        xbmcgui.Dialog().notification(settings.getLocalizedString(
+            32085), settings.getLocalizedString(32086))
 
     def import_gpodder_subscriptions(self):
 
-        # Step 1: query subscriptions from gPodder
+        # Step 1: Select target group
+        group, freeslots = self._select_target_group()
+        if group == -1:
+            return
+
+        # Step 2: query subscriptions from gPodder
         try:
             sessionid = self._login_at_gpodder()
             name, entries = self._parse_opml(
@@ -562,18 +635,46 @@ class Mediathek:
             xbmcgui.Dialog().ok("HTTP Status Error", error.message)
             return
 
-        # Step 2: Select feeds
-        feeds = self._select_feeds(name, entries)
+        # Step 3: Select feeds
+        feeds = self._select_feeds(name, entries, freeslots)
         if feeds == None:
             return
 
-        # Step 3: Select target group
-        group = self._select_target_group()
-        if group == -1:
+        # Step 4: Apply to group
+        self._apply_to_group(entries, group, feeds)
+
+        # Success
+        xbmcgui.Dialog().notification(settings.getLocalizedString(
+            32085), settings.getLocalizedString(32086))
+
+    def download_gpodder_subscriptions(self):
+
+        # Step 1: download subscriptions from gPodder
+        try:
+            sessionid = self._login_at_gpodder()
+            opml_data = self._load_gpodder_subscriptions(sessionid)
+
+        except HttpStatusError as error:
+            xbmcgui.Dialog().ok("HTTP Status Error", error.message)
             return
 
-        # Step 4: Confirm
-        self._confirm_to_group(entries, group, feeds)
+        # Step 2: Save file in folder
+        path, filename = self._save_opml_file(opml_data)
+        if not path:
+            return
+
+        # Success
+        xbmcgui.Dialog().notification(settings.getLocalizedString(
+            32085), "%s %s" % (settings.getLocalizedString(32083), filename))
+
+        # Step 3: Select target opml slot
+        slot = self._select_target_opml_slot(filename)
+        if slot != -1:
+            settings.setSetting("opml_file_%i" % slot, path)
+
+        # Success
+        xbmcgui.Dialog().notification(settings.getLocalizedString(
+            32085), settings.getLocalizedString(32086))
 
 
 if __name__ == '__main__':
@@ -585,6 +686,9 @@ if __name__ == '__main__':
 
     elif sys.argv[1] == "import_opml":
         mediathek.import_opml()
+
+    elif sys.argv[1] == "download_gpodder_subscriptions":
+        mediathek.download_gpodder_subscriptions()
 
     else:
         mediathek.handle(sys.argv)
