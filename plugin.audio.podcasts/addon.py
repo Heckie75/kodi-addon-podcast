@@ -54,7 +54,7 @@ class Mediathek:
             outline = [outline]
 
         entries = []
-        for o in outline:
+        for i, o in enumerate(outline):
             name = o["@title"] if "@title" in o else o["@text"]
             if not name and "@xmlUrl" in o:
                 m = re.match(
@@ -63,10 +63,8 @@ class Mediathek:
                     name = "%s %s...%s" % (settings.getLocalizedString(
                         32053), m.groups()[0][:20], m.groups()[1][-40:])
 
-            subpath = urllib.parse.quote(name)
-
             entry = {
-                "path": subpath,
+                "path": str(i),
                 "name": name,
                 "node": []
             }
