@@ -237,7 +237,7 @@ class Mediathek:
 
         if not res.startswith("<?xml"):
             raise HttpStatusError("Unexpected content for podcast %s" % url)
-            
+
         else:
             rss_feed = xmltodict.parse(res)
 
@@ -568,7 +568,7 @@ class Mediathek:
             "[^A-Za-z0-9']", " ", opml["opml"]["head"]["title"])
 
         path = xbmcgui.Dialog().browse(
-            type=3, heading=settings.getLocalizedString(32070), shares="")
+            type=3, heading=settings.getLocalizedString(32080), shares="")
 
         if not path:
             return None, None
@@ -586,11 +586,16 @@ class Mediathek:
 
             return None, None
 
-    def _select_target_opml_slot(self, filename):
+    def _select_target_opml_slot(self, heading, multi=False):
 
-        selection = ["%s %i" % (settings.getLocalizedString(
-            32021), g + 1) for g in range(self._GROUPS)]
-        return xbmcgui.Dialog().select(settings.getLocalizedString(32079), selection)
+        selection = list()
+        for g in range(self._GROUPS):
+            filename = settings.getSetting("opml_file_%i" % g)
+            selection.append("%s %i%s" % (settings.getLocalizedString(
+                32023), g + 1, ": %s" % filename if filename else ""))
+
+        dialog = xbmcgui.Dialog().multiselect if multi else xbmcgui.Dialog().select
+        return dialog(heading, selection)
 
     def import_opml(self):
 
@@ -666,9 +671,27 @@ class Mediathek:
             32085), "%s %s" % (settings.getLocalizedString(32083), filename))
 
         # Step 3: Select target opml slot
-        slot = self._select_target_opml_slot(filename)
-        if slot != -1:
-            settings.setSetting("opml_file_%i" % slot, path)
+        slot = self._select_target_opml_slot(settings.getLocalizedString(32079))
+        if slot == -1:
+            return
+
+        settings.setSetting("opml_file_%i" % slot, path)
+
+        # Success
+        xbmcgui.Dialog().notification(settings.getLocalizedString(
+            32085), settings.getLocalizedString(32086))
+
+    def unassign_opml(self):
+
+        # Step 1: Select slots
+        slots = self._select_target_opml_slot(
+            settings.getLocalizedString(32087), multi=True)
+        if len(slots) == 0:
+            return
+
+        # Step 2: empty slots
+        for slot in slots:
+            settings.setSetting("opml_file_%i" % slot, " ")
 
         # Success
         xbmcgui.Dialog().notification(settings.getLocalizedString(
@@ -687,6 +710,9 @@ if __name__ == '__main__':
 
     elif sys.argv[1] == "download_gpodder_subscriptions":
         mediathek.download_gpodder_subscriptions()
+
+    elif sys.argv[1] == "unassign_opml":
+        mediathek.unassign_opml()
 
     else:
         mediathek.handle(sys.argv)

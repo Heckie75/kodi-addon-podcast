@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings>
 
-  <category label="32060">
+  <category label="32061">
 
-    <setting label="32061" type="lsep" />
     <setting label="32067" type="text" option="hostname" id="gpodder_hostname" default="https://gpodder.net:443" />
     <setting label="32062" type="text" option="urlencoded" id="gpodder_username" default="" />
     <setting label="32063" type="text" option="hidden" id="gpodder_password" default="" />
+    <setting label="32068" type="action" option="close" action="Addon.OpenSettings($ID)" />
+
+    <setting label="32060" type="lsep" />
     <setting label="32064" type="action" action="RunScript($ID,import_gpodder_subscriptions)" />
     <setting label="32065" type="action" action="RunScript($ID,download_gpodder_subscriptions)" />
-    <setting label="32021" type="lsep" />
-    <setting label="32066" type="action" action="RunScript($ID,import_opml)" />
-
-  </category>
-
-  <category label="32050">
-
-    <setting label="32051" type="bool" id="anchor" default="false" />
 
   </category>
 
   <category label="32021">
+    <setting label="32060" type="lsep" />
+    <setting label="32066" type="action" action="RunScript($ID,import_opml)" option="close" />
+    <setting label="32087" type="action" action="RunScript($ID,unassign_opml)" option="close" />
+    <setting label="32021" type="lsep" />
     <setting label="32011" type="file" id="opml_file_0" mask=".xml|.opml" />
     <setting label="32012" type="file" id="opml_file_1" mask=".xml|.opml" />
     <setting label="32013" type="file" id="opml_file_2" mask=".xml|.opml" />
@@ -700,6 +698,12 @@
     <setting visible="!eq(-49,False)" enable="!eq(-1,False)" label="556" type="text" id="group_9_rss_9_name" default="" />
     <setting visible="!eq(-50,False)" enable="!eq(-2,False)" label="32022" type="text" id="group_9_rss_9_url" default="" />
     <setting visible="False" enable="False" label="19282" type="text" id="group_9_rss_9_icon" default="" />
+
+  </category>
+
+  <category label="32050">
+
+    <setting label="32051" type="bool" id="anchor" default="false" />
 
   </category>
 

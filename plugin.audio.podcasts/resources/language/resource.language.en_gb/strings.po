@@ -105,6 +105,10 @@ msgctxt "#32022"
 msgid "URL"
 msgstr ""
 
+msgctxt "#32023"
+msgid "OPML File"
+msgstr ""
+
 msgctxt "#32031"
 msgid "Podcast 1"
 msgstr ""
@@ -146,7 +150,7 @@ msgid "Podcast 10"
 msgstr ""
 
 msgctxt "#32050"
-msgid "General"
+msgid "Misc."
 msgstr ""
 
 msgctxt "#32051"
@@ -162,7 +166,7 @@ msgid "Untitled podcast from"
 msgstr ""
 
 msgctxt "#32060"
-msgid "Import"
+msgid "Actions"
 msgstr ""
 
 msgctxt "#32061"
@@ -182,7 +186,7 @@ msgid "Import subscriptions to group"
 msgstr ""
 
 msgctxt "#32065"
-msgid "Import podcast list as OPML File"
+msgid "Download subscriptions as OPML File"
 msgstr ""
 
 msgctxt "#32066"
@@ -191,6 +195,10 @@ msgstr ""
 
 msgctxt "#32067"
 msgid "Hostname"
+msgstr ""
+
+msgctxt "#32068"
+msgid "Apply changes"
 msgstr ""
 
 msgctxt "#32070"
@@ -258,5 +266,9 @@ msgid "RSS Podcast"
 msgstr ""
 
 msgctxt "#32086"
-msgid "Operations completed."
+msgid "Actions completed."
+msgstr ""
+
+msgctxt "#32087"
+msgid "Unassign OPML files"
 msgstr ""
