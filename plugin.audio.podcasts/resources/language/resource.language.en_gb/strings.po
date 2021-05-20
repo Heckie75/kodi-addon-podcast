@@ -109,6 +109,10 @@ msgctxt "#32023"
 msgid "OPML File"
 msgstr ""
 
+msgctxt "#32024"
+msgid "free / occupy"
+msgstr ""
+
 msgctxt "#32031"
 msgid "Podcast 1"
 msgstr ""
@@ -271,4 +275,28 @@ msgstr ""
 
 msgctxt "#32087"
 msgid "Unassign OPML files"
+msgstr ""
+
+msgctxt "#32090"
+msgid "Connection Error"
+msgstr ""
+
+msgctxt "#32091"
+msgid "HTTP Method %s not supported"
+msgstr ""
+
+msgctxt "#32092"
+msgid "Request Exception: Pls. check URL and port. See logs for further details."
+msgstr ""
+
+msgctxt "#32093"
+msgid "Unexpected HTTP Status %i for %s"
+msgstr ""
+
+msgctxt "#32094"
+msgid "Unexpected content for podcast"
+msgstr ""
+
+msgctxt "#32095"
+msgid "Authentification at gPodder failed. Missing session"
 msgstr ""

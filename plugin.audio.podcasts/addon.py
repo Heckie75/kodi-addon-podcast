@@ -92,7 +92,7 @@ class Mediathek:
 
         except HttpStatusError as error:
 
-            xbmcgui.Dialog().notification("HTTP Status Error", error.message)
+            xbmcgui.Dialog().notification(settings.getLocalizedString(32090), error.message)
 
     def _create_list_item(self, item):
 
@@ -105,10 +105,15 @@ class Mediathek:
             li.setPath(item["stream_url"])
 
         if "type" in item:
-            li.setInfo(item["type"], {
-                       "Title": item["name"],
-                       "plot": item["description"] if "description" in item else ""
-                       })
+            if item["type"] == "video":
+                li.setInfo(item["type"], {
+                    "title": item["name"],
+                    "plot": item["description"] if "description" in item else ""
+                })
+            elif item["type"] == "music":
+                li.setInfo(item["type"], {
+                    "title": item["name"]
+                })
 
         if "icon" in item and item["icon"]:
             li.setArt({"icon": item["icon"]})
@@ -177,19 +182,24 @@ class Mediathek:
         headers["User-Agent"] = useragent
 
         if method == "GET":
-            res = requests.get(url, headers=headers)
+            req = requests.get
         elif method == "POST":
-            res = requests.post(url, headers=headers)
+            req = requests.post
         else:
-            raise HttpStatusError(
-                "HTTP Method %s not supported" % method)
+            raise HttpStatusError(settings.getLocalizedString(32091) % method)
+
+        try:
+            res = req(url, headers=headers)
+        except requests.exceptions.RequestException as error:
+            xbmc.log("Request Exception: %s" % str(error), xbmc.LOGERROR)
+            raise HttpStatusError(settings.getLocalizedString(32092))
 
         if res.status_code == 200:
             return res.text, res.cookies
 
         else:
-            raise HttpStatusError(
-                "Unexpected HTTP Status %i for %s" % (res.status_code, url))
+            raise HttpStatusError(settings.getLocalizedString(
+                32093) % (res.status_code, url))
 
     def _load_rss(self, url):
 
@@ -236,7 +246,8 @@ class Mediathek:
         res, cookies = self._http_request(url)
 
         if not res.startswith("<?xml"):
-            raise HttpStatusError("Unexpected content for podcast %s" % url)
+            raise HttpStatusError("%s %s" % (
+                settings.getLocalizedString(32094), url))
 
         else:
             rss_feed = xmltodict.parse(res)
@@ -284,7 +295,7 @@ class Mediathek:
         except HttpStatusError as error:
             xbmc.log("HTTP Status Error: %s, path=%s" %
                      (error.message, path), xbmc.LOGERROR)
-            xbmcgui.Dialog().notification("HTTP Status Error", error.message)
+            xbmcgui.Dialog().notification(settings.getLocalizedString(32090), error.message)
 
         else:
             if len(items) > 0 and settings.getSetting("anchor") == "true":
@@ -338,6 +349,11 @@ class Mediathek:
         node = _get_node_by_path(path)
         for entry in node["node"]:
             self._add_list_item(entry, path)
+
+        xbmcplugin.addSortMethod(
+            self.addon_handle, xbmcplugin.SORT_METHOD_FULLPATH)
+        xbmcplugin.addSortMethod(
+            self.addon_handle, xbmcplugin.SORT_METHOD_LABEL)
 
         xbmcplugin.endOfDirectory(
             self.addon_handle, updateListing=updateListing)
@@ -457,8 +473,7 @@ class Mediathek:
                                     settings.getSetting("gpodder_username")), b64auth, "POST")
 
         if "sessionid" not in cookies:
-            raise HttpStatusError(
-                "Authentification at gPodder failed. Missing session")
+            raise HttpStatusError(settings.getLocalizedString(32095))
 
         return cookies["sessionid"]
 
@@ -635,7 +650,7 @@ class Mediathek:
                 self._load_gpodder_subscriptions(sessionid))
 
         except HttpStatusError as error:
-            xbmcgui.Dialog().ok("HTTP Status Error", error.message)
+            xbmcgui.Dialog().ok(settings.getLocalizedString(32090), error.message)
             return
 
         # Step 3: Select feeds
@@ -658,7 +673,7 @@ class Mediathek:
             opml_data = self._load_gpodder_subscriptions(sessionid)
 
         except HttpStatusError as error:
-            xbmcgui.Dialog().ok("HTTP Status Error", error.message)
+            xbmcgui.Dialog().ok(settings.getLocalizedString(32090), error.message)
             return
 
         # Step 2: Save file in folder
@@ -671,7 +686,8 @@ class Mediathek:
             32085), "%s %s" % (settings.getLocalizedString(32083), filename))
 
         # Step 3: Select target opml slot
-        slot = self._select_target_opml_slot(settings.getLocalizedString(32079))
+        slot = self._select_target_opml_slot(
+            settings.getLocalizedString(32079))
         if slot == -1:
             return
 
@@ -686,7 +702,7 @@ class Mediathek:
         # Step 1: Select slots
         slots = self._select_target_opml_slot(
             settings.getLocalizedString(32087), multi=True)
-        if len(slots) == 0:
+        if slots == None or len(slots) == 0:
             return
 
         # Step 2: empty slots
