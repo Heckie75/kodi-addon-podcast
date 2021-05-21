@@ -205,6 +205,10 @@ msgctxt "#32068"
 msgid "Apply changes"
 msgstr "Änderungen übernehmen"
 
+msgctxt "#32069"
+msgid "Import new subscriptions to group"
+msgstr "Neue Subskriptionen in eine Gruppe laden"
+
 msgctxt "#32070"
 msgid "Select OPML file"
 msgstr "Wähle OPML Datei für Import aus"
@@ -276,6 +280,10 @@ msgstr "Aktionen beendet."
 msgctxt "#32087"
 msgid "Unassign OPML files"
 msgstr "OPML Dateien aushängen"
+
+msgctxt "#32088"
+msgid "There are no feeds to select"
+msgstr "Es gibt derzeit keine Feeds zur Auswahl"
 
 msgctxt "#32090"
 msgid "Connection Error"

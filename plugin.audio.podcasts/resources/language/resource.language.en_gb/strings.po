@@ -205,6 +205,10 @@ msgctxt "#32068"
 msgid "Apply changes"
 msgstr ""
 
+msgctxt "#32069"
+msgid "Import new subscriptions to group"
+msgstr ""
+
 msgctxt "#32070"
 msgid "Select OPML file"
 msgstr ""
@@ -219,7 +223,7 @@ msgstr ""
 
 msgctxt "#32073"
 msgid "You must select at least one feed."
-msgstr "You must select at least one feed."
+msgstr ""
 
 msgctxt "#32074"
 msgid "Too many feeds selected"
@@ -275,6 +279,10 @@ msgstr ""
 
 msgctxt "#32087"
 msgid "Unassign OPML files"
+msgstr ""
+
+msgctxt "#32088"
+msgid "There are no feeds to select"
 msgstr ""
 
 msgctxt "#32090"

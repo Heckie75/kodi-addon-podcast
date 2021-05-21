@@ -105,15 +105,17 @@ class Mediathek:
             li.setPath(item["stream_url"])
 
         if "type" in item:
+            infos = {
+                "title": item["name"]
+            }
+
             if item["type"] == "video":
-                li.setInfo(item["type"], {
-                    "title": item["name"],
-                    "plot": item["description"] if "description" in item else ""
-                })
-            elif item["type"] == "music":
-                li.setInfo(item["type"], {
-                    "title": item["name"]
-                })
+                infos["plot"] = item["description"] if "description" in item else ""
+
+            if "duration" in item and item["duration"] >= 0:
+                infos["duration"] = item["duration"]
+
+            li.setInfo(item["type"], infos)
 
         if "icon" in item and item["icon"]:
             li.setArt({"icon": item["icon"]})
@@ -130,10 +132,6 @@ class Mediathek:
 
         if "specialsort" in item:
             li.setProperty("SpecialSort", item["specialsort"])
-
-        if "duration" in item and item["duration"] >= 0:
-            li.setInfo("music", {"duration": item["duration"]})
-            li.setInfo("video", {"duration": item["duration"]})
 
         return li
 
@@ -207,24 +205,18 @@ class Mediathek:
 
     def _load_rss(self, url):
 
-        def _parse_item(_ci):
+        def _parse_item(_ci, fallback_image):
 
-            if "enclosure" in _ci and "@url" in _ci["enclosure"]:
-                stream_url = _ci["enclosure"]["@url"]
-                if _ci["enclosure"]["@type"].split("/")[0] == "video":
-                    _type = "video"
-                else:
-                    _type = "music"
-            elif "guid" in _ci and _ci["guid"]:
-                # not supported yet
-                return None
-            else:
+            if "enclosure" not in _ci or "@url" not in _ci["enclosure"]:
                 return None
 
-            if "itunes:image" in _ci and "@href" in _ci["itunes:image"]:
-                item_image = _ci["itunes:image"]["@href"]
-            else:
-                item_image = image
+            item = {
+                "name": _ci["title"],
+                "description": _ci["description"] if "description" in _ci else "",
+                "stream_url": _ci["enclosure"]["@url"],
+                "type": "video" if _ci["enclosure"]["@type"].split("/")[0] == "video" else "music",
+                "icon": _ci["itunes:image"]["@href"] if "itunes:image" in _ci and "@href" in _ci["itunes:image"] else fallback_image
+            }
 
             if "pubDate" in _ci:
                 _f = re.findall(
@@ -232,39 +224,21 @@ class Mediathek:
 
                 if _f:
                     _m = _MONTHS.index(_f[0][1]) + 1
-                    pubDate = datetime(year=int(_f[0][2]), month=_m, day=int(_f[0][0]), hour=int(
+                    item["date"] = datetime(year=int(_f[0][2]), month=_m, day=int(_f[0][0]), hour=int(
                         _f[0][3]), minute=int(_f[0][4]), second=int(_f[0][5]))
-
-                else:
-                    pubDate = None
 
             if "itunes:duration" in _ci:
                 try:
-                    duration = int(_ci["itunes:duration"]) #if duration is already in seconds
+                    duration = 0
+                    for i, s in enumerate(reversed(_ci["itunes:duration"].split(":"))):
+                        duration += 60**i * int(s)
+
+                    item["duration"] = duration
+
                 except:
-                    try: #try converting HH:MM:SS or MM:SS string to integer seconds
-                        durationList = _ci["itunes:duration"].split(":")
+                    pass
 
-                        if len(durationList) == 3: #HH:MM:SS
-                            duration = int(durationList[0]) * 3600 + int(durationList[1]) * 60 + int(durationList[2])
-                        elif len(durationList) == 2: #MM:SS
-                            duration = int(durationList[0]) * 60 + int(durationList[1])
-                        else:
-                            duration = -1
-                    except:
-                        duration = -1
-            else:
-                duration = -1
-
-            return {
-                "name": _ci["title"],
-                "description": _ci["description"] if "description" in _ci else "",
-                "date": pubDate,
-                "icon": item_image,
-                "stream_url": stream_url,
-                "type": _type,
-                "duration": duration
-            }
+            return item
 
         res, cookies = self._http_request(url)
 
@@ -288,14 +262,10 @@ class Mediathek:
             image = None
 
         items = []
-        if type(channel["item"]) is list:
-            for _ci in channel["item"]:
-                item = _parse_item(_ci)
-                if item is not None:
-                    items += [item]
-
-        else:
-            item = _parse_item(channel["item"])
+        _cis = channel["item"] if type(channel["item"]) is list else [
+            channel["item"]]
+        for _ci in _cis:
+            item = _parse_item(_ci, image)
             if item is not None:
                 items += [item]
 
@@ -532,6 +502,11 @@ class Mediathek:
         selection = [e["name"]
                      for e in entries if "params" in e and len(e["params"]) == 1 and "rss" in e["params"][0]]
 
+        if len(selection) == 0:
+            xbmcgui.Dialog().ok(
+                settings.getLocalizedString(32071), settings.getLocalizedString(32088))
+            return None
+
         ok = False
         while not ok:
             feeds = xbmcgui.Dialog().multiselect(
@@ -659,7 +634,17 @@ class Mediathek:
         xbmcgui.Dialog().notification(settings.getLocalizedString(
             32085), settings.getLocalizedString(32086))
 
-    def import_gpodder_subscriptions(self):
+    def import_gpodder_subscriptions(self, only_new_ones=False):
+
+        def _filter_new_ones(entries):
+            _known_urls = list()
+            for g in range(self._GROUPS):
+                for e in range(self._ENTRIES):
+                    if settings.getSetting("group_%i_rss_%i_enable" % (g, e)) == "true":
+                        _known_urls.append(settings.getSetting(
+                            "group_%i_rss_%i_url" % (g, e)))
+
+            return [e for e in entries if "params" in e and len(e["params"]) == 1 and "rss" in e["params"][0] and e["params"][0]["rss"] not in _known_urls]
 
         # Step 1: Select target group
         group, freeslots = self._select_target_group()
@@ -675,6 +660,10 @@ class Mediathek:
         except HttpStatusError as error:
             xbmcgui.Dialog().ok(settings.getLocalizedString(32090), error.message)
             return
+
+        # Step 2.1: filter newbies
+        if only_new_ones:
+            entries = _filter_new_ones(entries)
 
         # Step 3: Select feeds
         feeds = self._select_feeds(name, entries, freeslots)
@@ -742,7 +731,7 @@ if __name__ == '__main__':
     mediathek = Mediathek()
 
     if sys.argv[1] == "import_gpodder_subscriptions":
-        mediathek.import_gpodder_subscriptions()
+        mediathek.import_gpodder_subscriptions("True" == sys.argv[2])
 
     elif sys.argv[1] == "import_opml":
         mediathek.import_opml()

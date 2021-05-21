@@ -14,7 +14,8 @@
   <category label="32060">
 
     <setting label="32061" type="lsep" />
-    <setting label="32064" type="action" action="RunScript($ID,import_gpodder_subscriptions)" />
+    <setting label="32064" type="action" action="RunScript($ID,import_gpodder_subscriptions,False)" />
+    <setting label="32069" type="action" action="RunScript($ID,import_gpodder_subscriptions,True)" />
     <setting label="32065" type="action" action="RunScript($ID,download_gpodder_subscriptions)" />
 
     <setting label="32021" type="lsep" />
