@@ -131,6 +131,10 @@ class Mediathek:
         if "specialsort" in item:
             li.setProperty("SpecialSort", item["specialsort"])
 
+        if "duration" in item and item["duration"] >= 0:
+            li.setInfo("music", {"duration": item["duration"]})
+            li.setInfo("video", {"duration": item["duration"]})
+
         return li
 
     def _add_list_item(self, entry, path):
@@ -234,13 +238,32 @@ class Mediathek:
                 else:
                     pubDate = None
 
+            if "itunes:duration" in _ci:
+                try:
+                    duration = int(_ci["itunes:duration"]) #if duration is already in seconds
+                except:
+                    try: #try converting HH:MM:SS or MM:SS string to integer seconds
+                        durationList = _ci["itunes:duration"].split(":")
+
+                        if len(durationList) == 3: #HH:MM:SS
+                            duration = int(durationList[0]) * 3600 + int(durationList[1]) * 60 + int(durationList[2])
+                        elif len(durationList) == 2: #MM:SS
+                            duration = int(durationList[0]) * 60 + int(durationList[1])
+                        else:
+                            duration = -1
+                    except:
+                        duration = -1
+            else:
+                duration = -1
+
             return {
                 "name": _ci["title"],
                 "description": _ci["description"] if "description" in _ci else "",
                 "date": pubDate,
                 "icon": item_image,
                 "stream_url": stream_url,
-                "type": _type
+                "type": _type,
+                "duration": duration
             }
 
         res, cookies = self._http_request(url)
