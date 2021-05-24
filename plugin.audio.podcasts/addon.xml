@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.audio.podcasts" name="RSS Podcasts" version="2.0.3-pre6" provider-name="Heckie">
+<addon id="plugin.audio.podcasts" name="RSS Podcasts" version="2.1.0" provider-name="Heckie">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="script.module.requests" version="2.25.1" />
@@ -26,10 +26,10 @@ Dateien direkt eingehängt werden.
 		<website>https://github.com/Heckie75/kodi-addon-podcast</website>
 		<source>https://github.com/Heckie75/kodi-addon-podcast</source>
 		<news>
-v2.0.3 (2021-05-21)
-- Added support for importing OPML files from your gPodder subscriptions and from local files 
-- Added plot to video podcasts
-- many refactorings
+v2.1.0 (2021-05-24)
+- Added support for importing subscriptions from your gPodder account or from local files 
+- Added information like duration and plot for video podcasts
+- many refactorings and bugfixes
 
 v2.0.2 (2021-05-14)
 - Bugfix according missing HTTP header and improved exception handling:
@@ -50,6 +50,9 @@ v2.0.0 (2021-05-11)
 			<screenshot>resources/assets/screenshot_03.png</screenshot>
 			<screenshot>resources/assets/screenshot_04.png</screenshot>
 			<screenshot>resources/assets/screenshot_05.png</screenshot>
+			<screenshot>resources/assets/screenshot_06.png</screenshot>
+			<screenshot>resources/assets/screenshot_07.png</screenshot>
+			<screenshot>resources/assets/screenshot_08.png</screenshot>
 		</assets>
 	</extension>
 </addon>

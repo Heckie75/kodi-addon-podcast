@@ -110,7 +110,7 @@ msgid "OPML File"
 msgstr ""
 
 msgctxt "#32024"
-msgid "free / occupy"
+msgid "vacancy / occupancy"
 msgstr ""
 
 msgctxt "#32031"
@@ -154,7 +154,7 @@ msgid "Podcast 10"
 msgstr ""
 
 msgctxt "#32050"
-msgid "Misc."
+msgid "Miscellaneous"
 msgstr ""
 
 msgctxt "#32051"
@@ -162,7 +162,7 @@ msgid "Anchor for most recent podcast (good for bookmarking)"
 msgstr ""
 
 msgctxt "#32052"
-msgid "Most recent episode"
+msgid "most recent episode"
 msgstr ""
 
 msgctxt "#32053"
@@ -222,7 +222,7 @@ msgid "No feeds selected"
 msgstr ""
 
 msgctxt "#32073"
-msgid "You must select at least one feed."
+msgid "You must select at least one feed"
 msgstr ""
 
 msgctxt "#32074"
@@ -230,7 +230,7 @@ msgid "Too many feeds selected"
 msgstr ""
 
 msgctxt "#32075"
-msgid "Do not select more than %i feeds."
+msgid "Do not select more than %i feeds"
 msgstr ""
 
 msgctxt "#32076"
@@ -238,15 +238,15 @@ msgid "Select group for import"
 msgstr ""
 
 msgctxt "#32077"
-msgid "free slots"
+msgid "vacant slots"
 msgstr ""
 
 msgctxt "#32078"
-msgid "No free slots in group left"
+msgid "No vacant slots in group left"
 msgstr ""
 
 msgctxt "#32079"
-msgid "Assign OPML File?"
+msgid "Attach OPML File?"
 msgstr ""
 
 msgctxt "#32080"
@@ -266,7 +266,7 @@ msgid "Saved as"
 msgstr ""
 
 msgctxt "#32084"
-msgid "Select a different group or disable slots in this group first."
+msgid "Select a different group or disable slots in this group first"
 msgstr ""
 
 msgctxt "#32085"
@@ -274,11 +274,11 @@ msgid "RSS Podcast"
 msgstr ""
 
 msgctxt "#32086"
-msgid "Actions completed."
+msgid "Actions completed"
 msgstr ""
 
 msgctxt "#32087"
-msgid "Unassign OPML files"
+msgid "Detach OPML files"
 msgstr ""
 
 msgctxt "#32088"
@@ -294,7 +294,7 @@ msgid "HTTP Method %s not supported"
 msgstr ""
 
 msgctxt "#32092"
-msgid "Request Exception: Pls. check URL and port. See logs for further details."
+msgid "Request Exception: Please check URL and port or see logs for further details"
 msgstr ""
 
 msgctxt "#32093"

@@ -110,7 +110,7 @@ msgid "OPML File"
 msgstr "OPML Datei"
 
 msgctxt "#32024"
-msgid "free / occupy"
+msgid "vacancy / occupancy"
 msgstr "frei / belegt"
 
 msgctxt "#32031"
@@ -154,7 +154,7 @@ msgid "Podcast 10"
 msgstr "Podcast 10"
 
 msgctxt "#32050"
-msgid "Misc."
+msgid "Miscellaneous"
 msgstr "Sonstiges"
 
 msgctxt "#32051"
@@ -162,7 +162,7 @@ msgid "Anchor for most recent podcast (good for bookmarking)"
 msgstr "Anker für aktuelle Sendung (hilfreich zum Bookmarken)"
 
 msgctxt "#32052"
-msgid "Most recent episode"
+msgid "most recent episode"
 msgstr "aktuelle Sendung"
 
 msgctxt "#32053"
@@ -222,31 +222,31 @@ msgid "No feeds selected"
 msgstr "Keine Feeds ausgewählt"
 
 msgctxt "#32073"
-msgid "You must select at least one feed."
-msgstr "Du musst mindestens einen Feed auswählen."
+msgid "You must select at least one feed"
+msgstr "Du musst mindestens einen Feed auswählen"
 
 msgctxt "#32074"
 msgid "Too many feeds selected"
 msgstr "Zu viele Feeds ausgewählt"
 
 msgctxt "#32075"
-msgid "Do not select more than %i feeds."
-msgstr "Es dürfen nicht mehr als %i Feeds ausgewählt werden."
+msgid "Do not select more than %i feeds"
+msgstr "Es dürfen nicht mehr als %i Feeds ausgewählt werden"
 
 msgctxt "#32076"
 msgid "Select group for import"
-msgstr "Wähle die Gruppe aus, in die importiert werden soll."
+msgstr "Wähle die Gruppe aus, in die importiert werden soll"
 
 msgctxt "#32077"
-msgid "free slots"
+msgid "vacant slots"
 msgstr "freie Plätze"
 
 msgctxt "#32078"
-msgid "No free slots in group left"
+msgid "No vacant slots in group left"
 msgstr "Keine freien Plätze in Gruppe verfügbar"
 
 msgctxt "#32079"
-msgid "Assign OPML File?"
+msgid "Attach OPML File?"
 msgstr "OPML Datei zuweisen?"
 
 msgctxt "#32080"
@@ -258,27 +258,27 @@ msgid "Saving OPML file failed"
 msgstr "Speichern fehlgeschlagen"
 
 msgctxt "#32082"
-msgid "Saving OPML file failed for unknown reason."
-msgstr "Speichern ist fehlgeschlagen."
+msgid "Saving OPML file failed for unknown reason"
+msgstr "Speichern ist fehlgeschlagen"
 
 msgctxt "#32083"
 msgid "Saved as"
 msgstr "Gespeichert als"
 
 msgctxt "#32084"
-msgid "Select a different group or disable slots in this group first."
-msgstr "Wähle eine andere Gruppe oder deaktiviere Podcasts in dieser Gruppe um fortzufahren."
+msgid "Select a different group or disable slots in this group first"
+msgstr "Wähle eine andere Gruppe oder deaktiviere Podcasts in dieser Gruppe um fortzufahren"
 
 msgctxt "#32085"
 msgid "RSS Podcast"
 msgstr "RSS Podcast"
 
 msgctxt "#32086"
-msgid "Actions completed."
-msgstr "Aktionen beendet."
+msgid "Actions completed"
+msgstr "Aktionen beendet"
 
 msgctxt "#32087"
-msgid "Unassign OPML files"
+msgid "Detach OPML files"
 msgstr "OPML Dateien aushängen"
 
 msgctxt "#32088"
@@ -294,8 +294,8 @@ msgid "HTTP Method %s not supported"
 msgstr "HTTP Methode %s wird nicht unterstützt"
 
 msgctxt "#32092"
-msgid "Request Exception: Pls. check URL and port. See logs for further details."
-msgstr "Request Fehler: Prüfe URL und Port. Für weitere Details prüfe die Log-Datei."
+msgid "Request Exception: Please check URL and port or see logs for further details"
+msgstr "Request Fehler: Prüfe URL und Port. Für weitere Details prüfe die Log-Datei"
 
 msgctxt "#32093"
 msgid "Unexpected HTTP Status %i for %s"
@@ -307,4 +307,4 @@ msgstr "Unerwarteter Inhalt für Podcast"
 
 msgctxt "#32095"
 msgid "Authentification at gPodder failed. Missing session"
-msgstr "Anmeldung an gPodder fehlgeschlagen."
+msgstr "Anmeldung an gPodder fehlgeschlagen"
