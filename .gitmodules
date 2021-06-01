@@ -1,0 +1,3 @@
+[submodule "plugin.audio.podcasts/resources/lib/rssaddon"]
+	path = plugin.audio.podcasts/resources/lib/rssaddon
+	url = git@github.com:Heckie75/kodi-submodule-rssaddon.git

@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+PLUGIN_ID="plugin.audio.podcasts"
+VERSION=$(egrep "<addon id=\"${PLUGIN_ID}\"" ${PLUGIN_ID}/addon.xml  | sed -re "s/.*version=\"([^\"]+)\".*/\1/")
+ZIP="${PLUGIN_ID}.${VERSION}.zip"
+
+
+if test -f "${ZIP}"; then
+  echo "remove ${ZIP}"
+  rm -f ${ZIP}
+fi
+
+zip -r ${ZIP} ${PLUGIN_ID} -x "*.git" "*LICENSE" "*README.md" "*.gitignore" "*__pycache__*" "*cpython-*"
+
+echo "${ZIP} successfully written"
