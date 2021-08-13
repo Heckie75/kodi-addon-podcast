@@ -92,6 +92,15 @@
             <data>RunScript(plugin.audio.podcasts,unassign_opml)</data>
           </control>
         </setting>
+        <setting id="opml_export" type="string" label="32089" help="">
+          <level>0</level>
+          <constraints>
+            <allowempty>true</allowempty>
+          </constraints>
+          <control type="button" format="action">
+            <data>RunScript(plugin.audio.podcasts,export_opml)</data>
+          </control>
+        </setting>
       </group>
     </category>
     <category id="category_opml_files" label="32021" help="">
