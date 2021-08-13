@@ -1,4 +1,6 @@
+import re
 
+import xbmcaddon
 import xmltodict
 
 def parse_opml(data):
@@ -15,7 +17,7 @@ def parse_opml(data):
                 m = re.match(
                     "^https?:\/\/([^\/]+).*\/?.*\/([^\/]+)\/?$", o["@xmlUrl"])
                 if m:
-                    name = "%s %s...%s" % (self.addon.getLocalizedString(
+                    name = "%s %s...%s" % (xbmcaddon.Addon().getLocalizedString(
                         32053), m.groups()[0][:20], m.groups()[1][-40:])
 
             entry = {
@@ -39,10 +41,20 @@ def parse_opml(data):
 
     opml_data = xmltodict.parse(data)
 
-    entries = parse_outlines_from_opml(
-        opml_data["opml"]["body"]["outline"])
+    if "opml" in opml_data and "head" in opml_data["opml"] and "title" in opml_data["opml"]["head"]:
+        title = opml_data["opml"]["head"]["title"]
 
-    return opml_data["opml"]["head"]["title"], entries
+    else:
+        title = ""
+
+    if "opml" in opml_data and "body" in opml_data["opml"] and "outline" in opml_data["opml"]["body"]:
+        entries = parse_outlines_from_opml(
+            opml_data["opml"]["body"]["outline"])
+    else:
+        entries = []
+
+    return title, entries
+
 
 def open_opml_file(path):
 

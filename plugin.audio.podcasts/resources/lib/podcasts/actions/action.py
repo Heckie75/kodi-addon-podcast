@@ -2,22 +2,20 @@ import xbmcaddon
 import xbmcgui
 import xbmcvfs
 
+
 class Action:
 
-    __PLUGIN_ID__ = "plugin.audio.podcasts"
-
     addon = None
-    addon_handle = None
-    plugin_id = __PLUGIN_ID__
     addon_dir = None
     anchor_for_latest = True
 
-    def __init__(self, addon_handle):
+    _GROUPS = 10
+    _ENTRIES = 10
 
-        self.addon = xbmcaddon.Addon(id=self.plugin_id)
-        self.addon_handle = addon_handle
+    def __init__(self):
+
+        self.addon = xbmcaddon.Addon()
         self.addon_dir = xbmcvfs.translatePath(self.addon.getAddonInfo('path'))
-
 
     def _select_target_group(self):
 
@@ -49,3 +47,14 @@ class Action:
 
         else:
             return selected, freeslots[selected]
+
+    def _select_target_opml_slot(self, heading, multi=False):
+
+        selection = list()
+        for g in range(self._GROUPS):
+            filename = self.addon.getSetting("opml_file_%i" % g)
+            selection.append("%s %i%s" % (self.addon.getLocalizedString(
+                32023), g + 1, ": %s" % filename if filename else ""))
+
+        dialog = xbmcgui.Dialog().multiselect if multi else xbmcgui.Dialog().select
+        return dialog(heading, selection)

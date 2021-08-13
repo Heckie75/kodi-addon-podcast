@@ -1,12 +1,11 @@
-from resources.lib.actions.action import Action
-
 import xbmcgui
+from resources.lib.podcasts.actions.action import Action
 
 
 class OpmlAction(Action):
 
-    def __init__(self, addon_handle):
-        super().__init__(addon_handle)
+    def __init__(self):
+        super().__init__()
 
     def _select_target_group(self):
 

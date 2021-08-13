@@ -8,27 +8,11 @@ import xbmcgui
 
 class ImportGPodderSubscriptionsAction(OpmlAction):
 
-    def __init__(self, addon_handle):
-        super().__init__(addon_handle)
+    def __init__(self):
+        super().__init__()
 
-    def import_gpodder_subscriptions(self, only_new_ones=False):
+    def _query_subscriptions_from_gpodder(self):
 
-        def _filter_new_ones(entries):
-            _known_urls = list()
-            for g in range(self._GROUPS):
-                for e in range(self._ENTRIES):
-                    if self.addon.getSetting("group_%i_rss_%i_enable" % (g, e)) == "true":
-                        _known_urls.append(self.addon.getSetting(
-                            "group_%i_rss_%i_url" % (g, e)))
-
-            return [e for e in entries if "params" in e and len(e["params"]) == 1 and "rss" in e["params"][0] and e["params"][0]["rss"] not in _known_urls]
-
-        # Step 1: Select target group
-        group, freeslots = self._select_target_group()
-        if group == -1:
-            return
-
-        # Step 2: query subscriptions from gPodder
         try:
             host = self.addon.getSetting("gpodder_hostname")
             user = self.addon.getSetting("gpodder_username")
@@ -38,14 +22,39 @@ class ImportGPodderSubscriptionsAction(OpmlAction):
             sessionid = gPodder.login(password)
             subscriptions = gPodder.request_subscriptions(sessionid)
             name, entries = parse_opml(subscriptions)
+            return name, entries
 
         except HttpStatusError as error:
             xbmcgui.Dialog().ok(self.addon.getLocalizedString(32151), error.message)
-            return
+            return None, None
 
-        # Step 2.1: filter newbies
+    def import_gpodder_subscriptions(self, only_new_ones=False):
+
+        def _filter_new_ones(entries):
+            _known_urls = list()
+            for g in range(self._GROUPS):
+                if self.addon.getSetting("group_%i_enable" % g) == "true":
+                    for e in range(self._ENTRIES):
+                        if self.addon.getSetting("group_%i_rss_%i_enable" % (g, e)) == "true":
+                            _known_urls.append(self.addon.getSetting(
+                                "group_%i_rss_%i_url" % (g, e)))
+
+            return [e for e in entries if "params" in e and len(e["params"]) == 1 and "rss" in e["params"][0] and e["params"][0]["rss"] not in _known_urls]
+
+        # Step 1: query subscriptions from gPodder
+        name, entries = self._query_subscriptions_from_gpodder()
         if only_new_ones:
             entries = _filter_new_ones(entries)
+
+        if len(entries) == 0:
+            xbmcgui.Dialog().ok(
+                self.addon.getLocalizedString(32071), self.addon.getLocalizedString(32088))
+            return
+
+        # Step 2: Select target group
+        group, freeslots = self._select_target_group()
+        if group == -1:
+            return
 
         # Step 3: Select feeds
         feeds = self._select_feeds(name, entries, freeslots)

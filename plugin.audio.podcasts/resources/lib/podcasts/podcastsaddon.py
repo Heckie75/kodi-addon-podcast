@@ -2,22 +2,20 @@ from resources.lib.rssaddon.abstract_rss_addon import AbstractRssAddon
 from resources.lib.podcasts.opml_file import parse_opml, open_opml_file
 
 import os
-import re
 
 import xbmc
 import xbmcplugin
+import xbmcaddon
 
 GROUPS = 10
 ENTRIES = 10
-
-PLUGIN_ID = "plugin.audio.podcasts"
 
 
 class PodcastsAddon(AbstractRssAddon):
 
     def __init__(self, addon_handle):
 
-        super().__init__(PLUGIN_ID, addon_handle)
+        super().__init__(xbmcaddon.Addon().getAddonInfo("id"),  addon_handle)
         self.anchor_for_latest = "true" == self.addon.getSetting("anchor")
 
     def on_rss_loaded(self, url, title, description, image, items):

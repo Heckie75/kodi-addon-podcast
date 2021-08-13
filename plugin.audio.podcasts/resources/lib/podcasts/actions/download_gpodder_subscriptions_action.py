@@ -1,22 +1,29 @@
-from resources.lib.actions.action import Action
-from resources.lib.rssaddon.httpstatuserror import HttpStatusError
-import resources.lib.gpodder.gpodder as gpodder
+import re
 
-import xmltodict
-
+from resources.lib.podcasts.gpodder import GPodder
 import xbmcgui
+import xmltodict
+from resources.lib.podcasts.actions.action import Action
+from resources.lib.rssaddon.http_status_error import HttpStatusError
 
-class ImportOpmlAction(Action):
 
-    def __init__(self, addon_handle):
-        super().__init__(addon_handle)
+class DownloadGpodderSubscriptionsAction(Action):
+
+    def __init__(self):
+        super().__init__()
 
     def download_gpodder_subscriptions(self):
 
         # Step 1: download subscriptions from gPodder
         try:
-            sessionid = gpodder._login_at_gpodder()
-            opml_data = gpodder._load_gpodder_subscriptions(sessionid)
+            host = self.addon.getSetting("gpodder_hostname")
+            user = self.addon.getSetting("gpodder_username")
+            password = self.addon.getSetting("gpodder_password")
+
+            gPodder = GPodder(self.addon, host, user)
+            sessionid = gPodder.login(password)
+
+            opml_data = gPodder.request_subscriptions(sessionid)
 
         except HttpStatusError as error:
             xbmcgui.Dialog().ok(self.addon.getLocalizedString(32151), error.message)

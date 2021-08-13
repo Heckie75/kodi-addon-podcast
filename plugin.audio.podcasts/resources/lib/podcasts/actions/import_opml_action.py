@@ -1,14 +1,13 @@
-from resources.lib.podcasts.actions.opml_action import OpmlAction
-from resources.lib.podcasts.opml_file import parse_opml
-
 import xbmc
 import xbmcgui
+from resources.lib.podcasts.actions.opml_action import OpmlAction
+from resources.lib.podcasts.opml_file import open_opml_file, parse_opml
 
 
 class ImportOpmlAction(OpmlAction):
 
-    def __init__(self, addon_handle):
-        super().__init__(addon_handle)
+    def __init__(self):
+        super().__init__()
 
     def import_opml(self):
 
@@ -42,7 +41,7 @@ class ImportOpmlAction(OpmlAction):
             return None, None
 
         try:
-            return parse_opml(self._open_opml_file(path))
+            return parse_opml(open_opml_file(path))
 
         except:
             xbmc.log("Cannot read opml file %s" % path, xbmc.LOGERROR)

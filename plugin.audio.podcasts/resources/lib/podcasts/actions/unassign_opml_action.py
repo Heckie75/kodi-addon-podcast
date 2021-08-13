@@ -6,8 +6,8 @@ import xbmcgui
 
 class UnassignOpmlAction(Action):
 
-    def __init__(self, addon_handle):
-        super().__init__(addon_handle)
+    def __init__(self):
+        super().__init__()
 
     def unassign_opml(self):
 
