@@ -15,7 +15,7 @@ class PodcastsAddon(AbstractRssAddon):
 
     def __init__(self, addon_handle):
 
-        super().__init__(xbmcaddon.Addon().getAddonInfo("id"),  addon_handle)
+        super().__init__(addon_handle)
         self.anchor_for_latest = "true" == self.addon.getSetting("anchor")
 
     def on_rss_loaded(self, url, title, description, image, items):

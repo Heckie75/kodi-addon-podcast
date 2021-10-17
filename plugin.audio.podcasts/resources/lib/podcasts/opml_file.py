@@ -58,5 +58,5 @@ def parse_opml(data):
 
 def open_opml_file(path):
 
-    with open(path) as _opml_file:
+    with open(path, encoding="utf-8") as _opml_file:
         return _opml_file.read()
