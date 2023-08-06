@@ -4,7 +4,7 @@ from resources.lib.podcasts.actions.action import Action
 
 class OpmlAction(Action):
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
     def _select_target_group(self) -> 'tuple[int,int]':

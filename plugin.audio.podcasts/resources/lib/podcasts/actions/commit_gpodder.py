@@ -1,5 +1,4 @@
 import xbmc
-import xbmcaddon
 import xbmcgui
 from resources.lib.podcasts.actions.action import Action
 from resources.lib.podcasts.gpodder import GPodder
@@ -8,7 +7,7 @@ from resources.lib.rssaddon.http_status_error import HttpStatusError
 
 class CommitGPodderAction(Action):
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
     def commit_gpodder(self) -> None:
@@ -24,6 +23,5 @@ class CommitGPodderAction(Action):
         except HttpStatusError as error:
             xbmcgui.Dialog().ok(self.addon.getLocalizedString(32151), error.message)
 
-        addon = xbmcaddon.Addon()
         xbmc.executebuiltin("Addon.OpenSettings(%s)" %
-                            addon.getAddonInfo("id"))
+                            self.addon.getAddonInfo("id"))

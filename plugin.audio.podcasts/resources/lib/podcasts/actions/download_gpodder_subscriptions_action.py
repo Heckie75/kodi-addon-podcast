@@ -4,12 +4,13 @@ from resources.lib.podcasts.gpodder import GPodder
 import xbmcgui
 import xmltodict
 from resources.lib.podcasts.actions.action import Action
+from resources.lib.podcasts.util import get_asset_path
 from resources.lib.rssaddon.http_status_error import HttpStatusError
 
 
 class DownloadGpodderSubscriptionsAction(Action):
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
     def download_gpodder_subscriptions(self) -> None:
@@ -35,8 +36,8 @@ class DownloadGpodderSubscriptionsAction(Action):
             return
 
         # Success
-        xbmcgui.Dialog().notification(self.addon.getLocalizedString(
-            32085), "%s %s" % (self.addon.getLocalizedString(32083), filename))
+        xbmcgui.Dialog().notification(heading=self.addon.getLocalizedString(
+            32085), message="%s %s" % (self.addon.getLocalizedString(32083), filename), icon=get_asset_path("notification.png"))
 
         # Step 3: Select target opml slot
         slot = self._select_target_opml_slot(
@@ -47,10 +48,10 @@ class DownloadGpodderSubscriptionsAction(Action):
         self.addon.setSetting("opml_file_%i" % slot, path)
 
         # Success
-        xbmcgui.Dialog().notification(self.addon.getLocalizedString(
-            32085), self.addon.getLocalizedString(32086))
+        xbmcgui.Dialog().notification(headline=self.addon.getLocalizedString(
+            32085), message=self.addon.getLocalizedString(32086), icon=get_asset_path("notification.png"))
 
-    def _save_opml_file(self, data: str):
+    def _save_opml_file(self, data: str) -> 'tuple[str,str]':
 
         opml = xmltodict.parse(data)
         filename = "%s.opml" % re.sub(

@@ -325,13 +325,65 @@ msgctxt "#32092"
 msgid "Backup failed"
 msgstr "Sicherung gescheitert"
 
+msgctxt "#32093"
+msgid "Provider"
+msgstr "Provider"
+
+msgctxt "#32094"
+msgid "Nextcloud Gpoddersync"
+msgstr "Nextcloud Gpoddersync"
+
 msgctxt "#32095"
-msgid "Authentification at gPodder failed. Missing session"
-msgstr "Anmeldung an gPodder fehlgeschlagen"
+msgid "Authentification failed."
+msgstr "Anmeldung fehlgeschlagen"
+
+msgctxt "#32096"
+msgid "Automatic synchronization"
+msgstr "Automatische Synchronisierung"
+
+msgctxt "#32097"
+msgid "off"
+msgstr "aus"
+
+msgctxt "#32098"
+msgid "once per day"
+msgstr "einmal pro Tag"
+
+msgctxt "#32099"
+msgid "once per week"
+msgstr "einmal pro Woche"
 
 msgctxt "#32101"
 msgid "most recent episode"
 msgstr "aktuelle Sendung"
+
+msgctxt "#32111"
+msgid "Full synchronization"
+msgstr "Komplette Synchronisation"
+
+msgctxt "#32112"
+msgid "Synchronize now"
+msgstr "Jetzt synchronisieren"
+
+msgctxt "#32113"
+msgid "Synchronizing with Nextcloud..."
+msgstr "Synchronisiere mit Nextcloud..."
+
+msgctxt "#32114"
+msgid "Inspecting new feeds..."
+msgstr "Prüfe neue Feeds..."
+
+msgctxt "#32115"
+msgid "Select feeds to delete in Kodi?"
+msgstr "Wähle Feeds zum Löschen in Kodi aus?"
+
+msgctxt "#32116"
+msgid "Select feeds to add to group in Kodi?"
+msgstr "Wähle Feeds zum Hinzufügen in eine Gruppe in Kodi aus?"
+
+msgctxt "#32117"
+msgid "Synchronization completed"
+msgstr "Synchronisation fertig"
 
 msgctxt "#32151"
 msgid "Connection Error"
