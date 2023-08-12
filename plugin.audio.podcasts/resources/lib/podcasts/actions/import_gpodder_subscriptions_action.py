@@ -65,5 +65,5 @@ class ImportGPodderSubscriptionsAction(OpmlAction):
         self._apply_to_group(entries, group, feeds)
 
         # Success
-        xbmcgui.Dialog().notification(headline=self.addon.getLocalizedString(
+        xbmcgui.Dialog().notification(heading=self.addon.getLocalizedString(
             32085), message=self.addon.getLocalizedString(32086), icon=get_asset_path("notification.png"))

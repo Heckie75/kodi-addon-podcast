@@ -397,6 +397,34 @@ msgctxt "#32120"
 msgid "Select feeds to delete in Nextcloud?"
 msgstr ""
 
+msgctxt "#32121"
+msgid "Search podcasts directories"
+msgstr ""
+
+msgctxt "#32122"
+msgid "Search fyyd.de"
+msgstr ""
+
+msgctxt "#32123"
+msgid "Enter search term in order to find podcast"
+msgstr ""
+
+msgctxt "#32124"
+msgid "Search for %s"
+msgstr ""
+
+msgctxt "#32125"
+msgid "No results for %s found"
+msgstr ""
+
+msgctxt "#32126"
+msgid "Choose podcasts in order to subscribe"
+msgstr ""
+
+msgctxt "#32127"
+msgid "Successfully subscribed to podcasts"
+msgstr ""
+
 msgctxt "#32151"
 msgid "Connection Error"
 msgstr ""
@@ -507,4 +535,8 @@ msgstr ""
 
 msgctxt "#32222"
 msgid "Export subscriptions in Kodi to Nextcloud."
+msgstr ""
+
+msgctxt "#32223"
+msgid "Search fyyd.de for podcasts. You can subscribe to new podcasts by adding them to groups."
 msgstr ""

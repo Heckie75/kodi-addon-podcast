@@ -2,10 +2,8 @@ import xbmcgui
 from resources.lib.podcasts.actions.action import Action
 from resources.lib.podcasts.util import get_asset_path
 
-class UnassignOpmlAction(Action):
 
-    def __init__(self) -> None:
-        super().__init__()
+class UnassignOpmlAction(Action):
 
     def unassign_opml(self) -> None:
 
@@ -20,7 +18,7 @@ class UnassignOpmlAction(Action):
             self.addon.setSetting("opml_file_%i" % slot, " ")
 
         # Success
-        xbmcgui.Dialog().notification(headline=self.addon.getLocalizedString(
+        xbmcgui.Dialog().notification(heading=self.addon.getLocalizedString(
             32085), message=self.addon.getLocalizedString(32086), icon=get_asset_path("notification.png"))
 
     def _select_target_opml_slot(self, heading: str, multi=False):

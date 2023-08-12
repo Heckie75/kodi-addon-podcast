@@ -1,20 +1,17 @@
+import json
 import time
 
-import json
 import xbmc
 import xbmcaddon
 import xbmcgui
-from resources.lib.podcasts.actions.opml_action import OpmlAction
+from resources.lib.podcasts.actions.remote_action import RemoteAction
 from resources.lib.podcasts.nextcloud import Nextcloud
 from resources.lib.podcasts.podcastsaddon import PodcastsAddon
 from resources.lib.podcasts.util import get_asset_path
 from resources.lib.rssaddon.http_status_error import HttpStatusError
 
 
-class SyncNextcloudSubscriptionsAction(OpmlAction):
-
-    def __init__(self) -> None:
-        super().__init__()
+class SyncNextcloudSubscriptionsAction(RemoteAction):
 
     def _query_subscriptions_from_nextcloud(self, full: bool = True) -> dict:
 
@@ -50,7 +47,6 @@ class SyncNextcloudSubscriptionsAction(OpmlAction):
                 "timestamp": timestamp if timestamp is not None else int(time.time())
             }
 
-
             xbmc.log(json.dumps(payload), xbmc.LOGINFO)
             response = nextcloud.change_subscriptions(payload=payload)
 
@@ -60,7 +56,7 @@ class SyncNextcloudSubscriptionsAction(OpmlAction):
             xbmc.log(str(error), xbmc.LOGERROR)
             xbmcgui.Dialog().ok(self.addon.getLocalizedString(32151), error.message)
 
-    def _get_current_feeds(self) -> 'tuple[dict[str,tuple[str,str,str]],dict[str,tuple[str,str,str]]]':
+    def _get_current_feeds(self) -> 'tuple[dict[dict],dict[dict]]':
         _active_feeds = dict()
         _inactive_feeds = dict()
         for g in range(self._GROUPS):
@@ -71,9 +67,19 @@ class SyncNextcloudSubscriptionsAction(OpmlAction):
                 group = self.addon.getSetting("group_%i_name" % g)
                 if name and url:
                     if self.addon.getSettingBool("group_%i_enable" % g) and self.addon.getSettingBool("group_%i_rss_%i_enable" % (g, e)):
-                        _active_feeds[url] = (name, icon, group)
+                        _active_feeds[url] = {
+                            "title": name,
+                            "icon": icon,
+                            "group": group,
+                            "url": url
+                        }
                     else:
-                        _inactive_feeds[url] = (name, icon, group)
+                        _inactive_feeds[url] = {
+                            "title": name,
+                            "icon": icon,
+                            "group": group,
+                            "url": url
+                        }
 
         return _active_feeds, _inactive_feeds
 
@@ -91,7 +97,7 @@ class SyncNextcloudSubscriptionsAction(OpmlAction):
 
     def sync_nextcloud_subscriptions(self, full: bool = True, opensettings: bool = False) -> None:
 
-        def _inspect_feeds_to_add(candicates_to_add: 'dict[str,tuple[str,str,str]]') -> 'list[tuple[str,str,str,str]]':
+        def _inspect_feeds_to_add(candicates_to_add: 'dict[dict]') -> 'list[dict]':
 
             if not candicates_to_add:
                 return list()
@@ -101,74 +107,39 @@ class SyncNextcloudSubscriptionsAction(OpmlAction):
 
             podcastsAddon = PodcastsAddon(self.addon)
             feeds = list()
-            for i, feed in enumerate(candicates_to_add):
+            for i, url in enumerate(candicates_to_add):
                 try:
                     progress.update(percent=int(
-                        i / len(candicates_to_add) * 100), message=feed)
-                    title, description, image, items = podcastsAddon.load_rss(
-                        feed)
-                    feeds.append((feed, title, image, description))
+                        i / len(candicates_to_add) * 100), message=url)
+                    title, description, icon, items = podcastsAddon.load_rss(
+                        url)
+                    feeds.append({
+                        "title": title,
+                        "icon": icon,
+                        "subtitle": description,
+                        "url": url
+                    }
+                    )
                     if progress.iscanceled():
                         return None
                 except:
                     xbmc.log("Unable to load rssfeed %s" %
-                             feed, xbmc.LOGWARNING)
+                             url, xbmc.LOGWARNING)
 
             progress.close()
             return feeds
 
-        def _handle_candicates_to_add(candicates_to_add: 'dict[str,tuple[str,str,str]]') -> bool:
+        def _handle_candicates_to_add(candicates_to_add: 'dict[dict]') -> bool:
 
             feeds = _inspect_feeds_to_add(candicates_to_add)
             while feeds:
-
-                items = list()
-                for i in feeds:
-                    li = xbmcgui.ListItem(label=i[1], label2=i[3])
-                    li.setArt({"thumb": i[2]})
-                    items.append(li)
-
-                selected_feeds = xbmcgui.Dialog().multiselect(
-                    heading=self.addon.getLocalizedString(32116), options=items, useDetails=True)
-
-                if selected_feeds == None:
+                feeds, abort = self.subscribe_feeds(feeds=feeds)
+                if abort:
                     return False
-
-                elif not selected_feeds:
-                    return True
-
-                group, freeslots = self._select_target_group()
-                if group == -1:
-                    continue
-
-                elif freeslots < len(selected_feeds):
-                    xbmcgui.Dialog().ok(self.addon.getLocalizedString(32074),
-                                        self.addon.getLocalizedString(32075) % freeslots)
-                    continue
-
-                else:
-                    self.addon.setSetting("group_%i_enable" % group, "True")
-                    i, j = 0, 0
-                    while (i < self._ENTRIES):
-                        if j < len(selected_feeds) and not self.addon.getSettingBool("group_%i_rss_%i_enable" % (group, i)):
-                            self.addon.setSettingBool(
-                                "group_%i_rss_%i_enable" % (group, i), True)
-                            self.addon.setSetting("group_%i_rss_%i_name" % (
-                                group, i), feeds[selected_feeds[j]][1])
-                            self.addon.setSetting("group_%i_rss_%i_url" % (
-                                group, i), feeds[selected_feeds[j]][0])
-                            self.addon.setSetting(
-                                "group_%i_rss_%i_icon" % (group, i), feeds[selected_feeds[j]][2])
-                            j += 1
-
-                        i += 1
-
-                feeds = [feed for i, feed in enumerate(
-                    feeds) if i not in selected_feeds]
 
             return True
 
-        def _handle_candicates_to_delete(candicates_to_delete: 'dict[str,tuple[str,str,str]]') -> bool:
+        def _handle_candicates_to_delete(candicates_to_delete: 'dict[dict]') -> bool:
 
             if not candicates_to_delete:
                 return True
@@ -176,12 +147,17 @@ class SyncNextcloudSubscriptionsAction(OpmlAction):
             items: 'list[xbmcgui.ListItem]' = list()
             for url in candicates_to_delete:
                 entry = candicates_to_delete[url]
-                li = xbmcgui.ListItem(label=entry[0], label2="%s: %s" % (
-                    self.addon.getLocalizedString(32000), entry[2]), path=url)
-                if entry[1]:
-                    li.setArt({"thumb": entry[1]})
+                li = xbmcgui.ListItem(label=entry["title"], path=url)
+
+                if "group" in entry and entry["group"]:
+                    li.setLabel2("%s: %s" % (
+                        self.addon.getLocalizedString(32000), entry["group"]))
+
+                if "icon" in entry and entry["icon"]:
+                    li.setArt({"thumb": entry["icon"]})
                 else:
                     li.setArt({"thumb": get_asset_path("notification.png")})
+
                 items.append(li)
 
             selection = xbmcgui.Dialog().multiselect(
@@ -203,7 +179,8 @@ class SyncNextcloudSubscriptionsAction(OpmlAction):
         candicates_to_add = {
             url: None for url in response["add"] if url not in current_active_feeds}
         candicates_to_delete = {
-            url: current_active_feeds[url] for url in response["remove"] if url in current_active_feeds}
+            url: current_active_feeds[url] for url in response["remove"] if url in current_active_feeds
+        }
         if full:
             for current in current_active_feeds:
                 if current not in response["add"]:
@@ -223,7 +200,7 @@ class SyncNextcloudSubscriptionsAction(OpmlAction):
 
     def export_to_nextcloud(self) -> None:
 
-        def _handle_candicates(candidates: 'dict[str,tuple[str,str,str]]', heading: str) -> 'list[str]':
+        def _handle_candicates(candidates: 'dict[dict]', heading: str) -> 'list[str]':
 
             if not candidates:
                 return []
@@ -231,10 +208,10 @@ class SyncNextcloudSubscriptionsAction(OpmlAction):
             items: 'list[xbmcgui.ListItem]' = list()
             for url in candidates:
                 entry = candidates[url]
-                li = xbmcgui.ListItem(label=entry[0], label2="%s: %s" % (
-                    self.addon.getLocalizedString(32000), entry[2]), path=url)
-                if entry[1]:
-                    li.setArt({"thumb": entry[1]})
+                li = xbmcgui.ListItem(label=entry["title"], label2="%s: %s" % (
+                    self.addon.getLocalizedString(32000), entry["group"]), path=url)
+                if entry["icon"]:
+                    li.setArt({"thumb": entry["icon"]})
                 else:
                     li.setArt({"thumb": get_asset_path("notification.png")})
 
@@ -268,15 +245,11 @@ class SyncNextcloudSubscriptionsAction(OpmlAction):
         if _to_delete == None:
             return
 
-        xbmc.log("\n".join(_to_add), xbmc.LOGINFO)
-        xbmc.log("\n".join(_to_delete), xbmc.LOGINFO)
-
-        self._change_subscription_in_nextcloud(add=_to_add, remove=_to_delete, timestamp=0)
+        self._change_subscription_in_nextcloud(
+            add=_to_add, remove=_to_delete, timestamp=0)
 
         xbmcgui.Dialog().notification(heading=self.addon.getLocalizedString(
             32094), message=self.addon.getLocalizedString(32117), icon=get_asset_path("notification.png"))
-
-        xbmcaddon.Addon().openSettings()
 
     def check_for_updates(self) -> None:
 

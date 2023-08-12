@@ -27,6 +27,7 @@ Dateien direkt eingehängt werden.
 		<source>https://github.com/Heckie75/kodi-addon-podcast</source>
 		<news>
 v2.3.0 (2023-08-06)
+- Added feature in order to search for podcasts in fyyd.de podcast directory
 - Support for Nextcloud Gpoddersync
 - Improved thumbnail if item is added to favourites
 - Added help texts in settings
@@ -64,9 +65,7 @@ v2.0.2 (2021-05-14)
 
 v2.0.1 (2021-05-12)
 - Bugfix for Kodi v19 which has no order by date. Only availble in Kodi v20
-
-v2.0.0 (2021-05-11)
-- Migration to Kodi 19 (Matrix)</news>
+</news>
 		<assets>
 			<icon>resources/assets/icon.png</icon>
 			<fanart>resources/assets/fanart.png</fanart>

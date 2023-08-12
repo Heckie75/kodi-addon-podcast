@@ -8,9 +8,6 @@ from resources.lib.rssaddon.http_status_error import HttpStatusError
 
 class CommitNextcloudAction(Action):
 
-    def __init__(self) -> None:
-        super().__init__()
-
     def commit_nextcloud(self) -> None:
 
         try:
@@ -27,6 +24,4 @@ class CommitNextcloudAction(Action):
             xbmc.log(str(error), xbmc.LOGERROR)
             xbmcgui.Dialog().ok(self.addon.getLocalizedString(32151), error.message)
 
-        addon = xbmcaddon.Addon()
-        xbmc.executebuiltin("Addon.OpenSettings(%s)" %
-                            addon.getAddonInfo("id"))
+        xbmcaddon.Addon().openSettings()

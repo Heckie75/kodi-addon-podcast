@@ -6,6 +6,7 @@ from resources.lib.podcasts.actions.download_gpodder_subscriptions_action import
 from resources.lib.podcasts.actions.export_opml_action import ExportOpmlAction
 from resources.lib.podcasts.actions.import_gpodder_subscriptions_action import ImportGPodderSubscriptionsAction
 from resources.lib.podcasts.actions.import_opml_action import ImportOpmlAction
+from resources.lib.podcasts.actions.search_fyyd_action import SearchFyydAction
 from resources.lib.podcasts.actions.sync_nextcloud_subscriptions_action import SyncNextcloudSubscriptionsAction
 from resources.lib.podcasts.actions.unassign_opml_action import UnassignOpmlAction
 from resources.lib.podcasts.podcastsaddon import PodcastsAddon
@@ -49,6 +50,10 @@ if __name__ == '__main__':
     elif sys.argv[1] == "export_opml":
         exportOpmlAction = ExportOpmlAction()
         exportOpmlAction.export_opml()
+
+    elif sys.argv[1] == "search_fyyd":
+        searchFyydAction = SearchFyydAction()
+        searchFyydAction.search_fyyd()
 
     else:
         podcastsAddon = PodcastsAddon(int(sys.argv[1]))

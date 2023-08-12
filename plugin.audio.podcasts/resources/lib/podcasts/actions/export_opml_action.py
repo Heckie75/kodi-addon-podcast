@@ -7,9 +7,6 @@ from resources.lib.podcasts.util import get_asset_path
 
 class ExportOpmlAction(OpmlAction):
 
-    def __init__(self) -> None:
-        super().__init__()
-
     def _write_opml_file(self, path: str) -> bool:
 
         def _get_rfc822_date(_dt: datetime) -> str:
@@ -68,7 +65,7 @@ class ExportOpmlAction(OpmlAction):
         # Step 2: Write file
         if self._write_opml_file(path):
             # Success
-            xbmcgui.Dialog().notification(headline=self.addon.getLocalizedString(
+            xbmcgui.Dialog().notification(heading=self.addon.getLocalizedString(
                 32091), message=self.addon.getLocalizedString(32086), icon=get_asset_path("notification.png"))
         else:
             xbmcgui.Dialog().notification(heading=self.addon.getLocalizedString(
