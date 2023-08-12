@@ -363,7 +363,7 @@ msgstr "Komplette Synchronisation"
 
 msgctxt "#32112"
 msgid "Synchronize now"
-msgstr "Jetzt synchronisieren"
+msgstr "Änderungen synchronisieren"
 
 msgctxt "#32113"
 msgid "Synchronizing with Nextcloud..."
@@ -384,6 +384,18 @@ msgstr "Wähle Feeds zum Hinzufügen in eine Gruppe in Kodi aus?"
 msgctxt "#32117"
 msgid "Synchronization completed"
 msgstr "Synchronisation fertig"
+
+msgctxt "#32118"
+msgid "Export to Nextcloud"
+msgstr "Exportiere nach Nextcloud"
+
+msgctxt "#32119"
+msgid "Select feeds to add in Nextcloud?"
+msgstr "Wähle Feeds zum Hinzufügen in Nextcloud aus?"
+
+msgctxt "#32120"
+msgid "Select feeds to delete in Nextcloud?"
+msgstr "Wähle Feeds zum Löschen in Nextcloud aus?"
 
 msgctxt "#32151"
 msgid "Connection Error"
@@ -431,11 +443,11 @@ msgstr "Wähle ein Aktualisierungsinterval, um über Änderungen deiner Abos auf
 
 msgctxt "#32206"
 msgid "Request all available subscriptions from gPodder.net and subscribe to them by assigning these to groups."
-msgstr "Frage alle Abos von gPodder.net ab und aboniere diese, in dem Du diese Gruppen zuweist."
+msgstr "Frage alle Abos von gPodder.net ab und abonniere diese, in dem Du diese Gruppen zuweist."
 
 msgctxt "#32207"
 msgid "Request only subscriptions from gPodder.net that are not subscribed in Kodi yet and subscribe to them by assigning these to groups."
-msgstr "Frage nur Abos von gPodder.net ab, die noch nicht in Kodi aboniert wurden, und aboniere diese, in dem Du diese Gruppen zuweist."
+msgstr "Frage nur Abos von gPodder.net ab, die noch nicht in Kodi abonniert wurden, und abonniere diese, in dem Du diese Gruppen zuweist."
 
 msgctxt "#32208"
 msgid "Request all available subscriptions from gPodder.net and download these as OPML file."
@@ -492,3 +504,7 @@ msgstr "Aktiviere diesen Schalter, wenn Du am Anfang jeder Liste einen festen Ei
 msgctxt "#32221"
 msgid "Sometimes a subscription contains hundrets of episodes. Then you would probably like to limit number of episodes displayed in list."
 msgstr "Manchmal haben Abos hunderte Episoden. In diesem Fall möchtest Du vielleicht die Liste der angezeigten Episoden begrenzen."
+
+msgctxt "#32222"
+msgid "Export subscriptions in Kodi to Nextcloud. Active and inactive subscriptions will be taken into account."
+msgstr "Exportiere Abos zu Nextcloud. Es werden aktive und deaktivierte Abos berücksichtigt."

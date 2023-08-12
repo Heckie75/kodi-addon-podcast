@@ -385,6 +385,18 @@ msgctxt "#32117"
 msgid "Synchronization completed"
 msgstr ""
 
+msgctxt "#32118"
+msgid "Export to Nextcloud"
+msgstr ""
+
+msgctxt "#32119"
+msgid "Select feeds to add in Nextcloud?"
+msgstr ""
+
+msgctxt "#32120"
+msgid "Select feeds to delete in Nextcloud?"
+msgstr ""
+
 msgctxt "#32151"
 msgid "Connection Error"
 msgstr ""
@@ -491,4 +503,8 @@ msgstr ""
 
 msgctxt "#32221"
 msgid "Sometimes a subscription contains hundrets of episodes. Then you would probably like to limit number of episodes displayed in list."
+msgstr ""
+
+msgctxt "#32222"
+msgid "Export subscriptions in Kodi to Nextcloud."
 msgstr ""

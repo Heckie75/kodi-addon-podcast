@@ -42,6 +42,10 @@ if __name__ == '__main__':
         syncNextcloudSubscriptionsAction.sync_nextcloud_subscriptions(
             "True" == sys.argv[2], "True" == sys.argv[3])
 
+    elif sys.argv[1] == "export_to_nextcloud":
+        syncNextcloudSubscriptionsAction = SyncNextcloudSubscriptionsAction()
+        syncNextcloudSubscriptionsAction.export_to_nextcloud()
+
     elif sys.argv[1] == "export_opml":
         exportOpmlAction = ExportOpmlAction()
         exportOpmlAction.export_opml()

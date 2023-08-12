@@ -106,7 +106,7 @@
           </dependencies>
         </setting>
         <setting id="nextcloud_sync_interval" type="integer" label="32096" help="32205">
-          <level>0</level>
+          <level>1</level>
           <default>0</default>
           <constraints>
             <options>
@@ -184,7 +184,7 @@
           </dependencies>
         </setting>
         <setting id="gpodder_import_new" type="string" label="32069" help="32207">
-          <level>0</level>
+          <level>1</level>
           <constraints>
             <allowempty>true</allowempty>
           </constraints>
@@ -196,7 +196,7 @@
           </dependencies>
         </setting>
         <setting id="gpodder_download_as_opml" type="string" label="32065" help="32208">
-          <level>0</level>
+          <level>2</level>
           <constraints>
             <allowempty>true</allowempty>
           </constraints>
@@ -221,7 +221,7 @@
           </dependencies>
         </setting>
         <setting id="nextcloud_sync_updates" type="string" label="32112" help="32210">
-          <level>0</level>
+          <level>1</level>
           <constraints>
             <allowempty>true</allowempty>
           </constraints>
@@ -233,8 +233,21 @@
             <dependency type="visible" setting="remote_type" operator="is">2</dependency>
           </dependencies>
         </setting>
+        <setting id="nextcloud_export" type="string" label="32118" help="32222">
+          <constraints>
+            <allowempty>true</allowempty>
+          </constraints>
+          <control type="button" format="action">
+            <data>RunScript(plugin.audio.podcasts,export_to_nextcloud)</data>
+            <close>true</close>
+          </control>
+          <dependencies>
+            <dependency type="visible" setting="remote_type" operator="is">2</dependency>
+          </dependencies>
+        </setting>        
       </group>
       <group id="opml_actions" label="32021">
+        <level>1</level>
         <setting id="opml_import" type="string" label="32066" help="32211">
           <level>0</level>
           <constraints>
@@ -254,7 +267,7 @@
           </control>
         </setting>
         <setting id="opml_export" type="string" label="32089" help="32213">
-          <level>0</level>
+          <level>2</level>
           <constraints>
             <allowempty>true</allowempty>
           </constraints>
@@ -5486,7 +5499,7 @@
           <control type="toggle"/>
         </setting>
         <setting id="limit_episodes" type="integer" label="32052" help="32221">
-          <level>0</level>
+          <level>1</level>
           <default>0</default>
           <constraints>
             <options>

@@ -11,11 +11,11 @@
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en_GB">RSS Podcasts in KODI</summary>
 		<summary lang="de_DE">RSS Podcasts in KODI</summary>
-		<description lang="en_GB">This addon allows to import your audio and video podcasts from gPodder.net or from OPML files.
+		<description lang="en_GB">This addon allows to import your audio and video podcasts from gPodder.net, Nextcloud Gpoddersync or from OPML files.
 You can make use of up to 10 categories in order to manage your podcasts. You can also directly enter the URLs of your podcasts
 or attach up to 10 OPML files directly.
 		</description>
-		<description lang="de_DE">Dieses Addon ermöglicht den Import Deiner Audio und Video Podcasts von gPodder.net oder aus OPML Dateien.
+		<description lang="de_DE">Dieses Addon ermöglicht den Import Deiner Audio und Video Podcasts von gPodder.net, Nextcloud Gpoddersync oder aus OPML Dateien.
 Du kannst Deine Podcasts in bis zu 10 Kategorien einsortieren. RSS Feeds können auch manuell gepflegt werden. Weiterhin können bis zu 10 OPML
 Dateien direkt eingehängt werden.	
 		</description>
@@ -29,6 +29,7 @@ Dateien direkt eingehängt werden.
 v2.3.0 (2023-08-06)
 - Support for Nextcloud Gpoddersync
 - Improved thumbnail if item is added to favourites
+- Added help texts in settings
 - refactoring
 
 v2.2.3 (2022-10-04)
