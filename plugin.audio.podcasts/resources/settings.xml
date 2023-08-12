@@ -3,7 +3,7 @@
   <section id="plugin.audio.podcasts">
     <category id="category_remotes" label="32093" help="">
       <group id="group_remotes" label="32093">
-        <setting id="remote_type" type="integer" label="32093" help="">
+        <setting id="remote_type" type="integer" label="32093" help="32200">
           <level>0</level>
           <default>0</default>
           <constraints>
@@ -15,7 +15,7 @@
           </constraints>
           <control type="spinner" format="string" />
         </setting>
-        <setting id="gpodder_hostname" type="string" label="32067" help="">
+        <setting id="gpodder_hostname" type="string" label="32067" help="32201">
           <level>0</level>
           <default>https://gpodder.net:443</default>
           <constraints>
@@ -28,7 +28,7 @@
             <dependency type="visible" setting="remote_type" operator="is">1</dependency>
           </dependencies>
         </setting>
-        <setting id="gpodder_username" type="string" label="32062" help="">
+        <setting id="gpodder_username" type="string" label="32062" help="32202">
           <level>0</level>
           <default />
           <constraints>
@@ -41,7 +41,7 @@
             <dependency type="visible" setting="remote_type" operator="is">1</dependency>
           </dependencies>
         </setting>
-        <setting id="gpodder_password" type="string" label="32063" help="">
+        <setting id="gpodder_password" type="string" label="32063" help="32203">
           <level>0</level>
           <default />
           <constraints>
@@ -55,7 +55,7 @@
             <dependency type="visible" setting="remote_type" operator="is">1</dependency>
           </dependencies>
         </setting>
-        <setting id="gpodder_commit" type="action" label="32068" help="">
+        <setting id="gpodder_commit" type="action" label="32068" help="32204">
           <level>0</level>
           <data>RunScript(plugin.audio.podcasts,commit_gpodder)</data>
           <control type="button" format="action">
@@ -65,7 +65,7 @@
             <dependency type="visible" setting="remote_type" operator="is">1</dependency>
           </dependencies>
         </setting>
-        <setting id="nextcloud_hostname" type="string" label="32067" help="">
+        <setting id="nextcloud_hostname" type="string" label="32067" help="32201">
           <level>0</level>
           <default>https://</default>
           <constraints>
@@ -78,7 +78,7 @@
             <dependency type="visible" setting="remote_type" operator="is">2</dependency>
           </dependencies>
         </setting>
-        <setting id="nextcloud_username" type="string" label="32062" help="">
+        <setting id="nextcloud_username" type="string" label="32062" help="32202">
           <level>0</level>
           <default />
           <constraints>
@@ -91,7 +91,7 @@
             <dependency type="visible" setting="remote_type" operator="is">2</dependency>
           </dependencies>
         </setting>
-        <setting id="nextcloud_password" type="string" label="32063" help="">
+        <setting id="nextcloud_password" type="string" label="32063" help="32203">
           <level>0</level>
           <default />
           <constraints>
@@ -105,7 +105,7 @@
             <dependency type="visible" setting="remote_type" operator="is">2</dependency>
           </dependencies>
         </setting>
-        <setting id="nextcloud_sync_interval" type="integer" label="32096" help="">
+        <setting id="nextcloud_sync_interval" type="integer" label="32096" help="32205">
           <level>0</level>
           <default>0</default>
           <constraints>
@@ -131,7 +131,7 @@
           </control>
           <visible>false</visible>
         </setting>        
-        <setting id="nextcloud_commit" type="action" label="32068" help="">
+        <setting id="nextcloud_commit" type="action" label="32068" help="32204">
           <level>0</level>
           <data>RunScript(plugin.audio.podcasts,commit_nextcloud)</data>
           <control type="button" format="action">
@@ -171,7 +171,7 @@
             <dependency type="visible" setting="remote_type" operator="is">2</dependency>
           </dependencies>
         </setting>
-        <setting id="gpodder_import_all" type="string" label="32064" help="">
+        <setting id="gpodder_import_all" type="string" label="32064" help="32206">
           <level>0</level>
           <constraints>
             <allowempty>true</allowempty>
@@ -183,7 +183,7 @@
             <dependency type="visible" setting="remote_type" operator="is">1</dependency>
           </dependencies>
         </setting>
-        <setting id="gpodder_import_new" type="string" label="32069" help="">
+        <setting id="gpodder_import_new" type="string" label="32069" help="32207">
           <level>0</level>
           <constraints>
             <allowempty>true</allowempty>
@@ -195,7 +195,7 @@
             <dependency type="visible" setting="remote_type" operator="is">1</dependency>
           </dependencies>
         </setting>
-        <setting id="gpodder_download_as_opml" type="string" label="32065" help="">
+        <setting id="gpodder_download_as_opml" type="string" label="32065" help="32208">
           <level>0</level>
           <constraints>
             <allowempty>true</allowempty>
@@ -207,7 +207,7 @@
             <dependency type="visible" setting="remote_type" operator="is">1</dependency>
           </dependencies>
         </setting>
-        <setting id="nextcloud_sync_full" type="string" label="32111" help="">
+        <setting id="nextcloud_sync_full" type="string" label="32111" help="32209">
           <level>0</level>
           <constraints>
             <allowempty>true</allowempty>
@@ -220,7 +220,7 @@
             <dependency type="visible" setting="remote_type" operator="is">2</dependency>
           </dependencies>
         </setting>
-        <setting id="nextcloud_sync_updates" type="string" label="32112" help="">
+        <setting id="nextcloud_sync_updates" type="string" label="32112" help="32210">
           <level>0</level>
           <constraints>
             <allowempty>true</allowempty>
@@ -235,7 +235,7 @@
         </setting>
       </group>
       <group id="opml_actions" label="32021">
-        <setting id="opml_import" type="string" label="32066" help="">
+        <setting id="opml_import" type="string" label="32066" help="32211">
           <level>0</level>
           <constraints>
             <allowempty>true</allowempty>
@@ -244,7 +244,7 @@
             <data>RunScript(plugin.audio.podcasts,import_opml)</data>
           </control>
         </setting>
-        <setting id="opml_unassign" type="string" label="32087" help="">
+        <setting id="opml_unassign" type="string" label="32087" help="32212">
           <level>0</level>
           <constraints>
             <allowempty>true</allowempty>
@@ -253,7 +253,7 @@
             <data>RunScript(plugin.audio.podcasts,unassign_opml)</data>
           </control>
         </setting>
-        <setting id="opml_export" type="string" label="32089" help="">
+        <setting id="opml_export" type="string" label="32089" help="32213">
           <level>0</level>
           <constraints>
             <allowempty>true</allowempty>
@@ -266,7 +266,7 @@
     </category>
     <category id="category_opml_files" label="32021" help="">
       <group id="group_opml_files" label="32021">
-        <setting id="opml_file_0" type="path" label="32011" help="">
+        <setting id="opml_file_0" type="path" label="32011" help="32214">
           <level>0</level>
           <default/>
           <constraints>
@@ -278,7 +278,7 @@
             <heading>32011</heading>
           </control>
         </setting>
-        <setting id="opml_file_1" type="path" label="32012" help="">
+        <setting id="opml_file_1" type="path" label="32012" help="32214">
           <level>0</level>
           <default/>
           <constraints>
@@ -290,7 +290,7 @@
             <heading>32011</heading>
           </control>
         </setting>
-        <setting id="opml_file_2" type="path" label="32013" help="">
+        <setting id="opml_file_2" type="path" label="32013" help="32214">
           <level>0</level>
           <default/>
           <constraints>
@@ -302,7 +302,7 @@
             <heading>32012</heading>
           </control>
         </setting>
-        <setting id="opml_file_3" type="path" label="32014" help="">
+        <setting id="opml_file_3" type="path" label="32014" help="32214">
           <level>0</level>
           <default/>
           <constraints>
@@ -314,7 +314,7 @@
             <heading>32014</heading>
           </control>
         </setting>
-        <setting id="opml_file_4" type="path" label="32015" help="">
+        <setting id="opml_file_4" type="path" label="32015" help="32214">
           <level>0</level>
           <default/>
           <constraints>
@@ -326,7 +326,7 @@
             <heading>32015</heading>
           </control>
         </setting>
-        <setting id="opml_file_5" type="path" label="32016" help="">
+        <setting id="opml_file_5" type="path" label="32016" help="32214">
           <level>0</level>
           <default/>
           <constraints>
@@ -338,7 +338,7 @@
             <heading>32016</heading>
           </control>
         </setting>
-        <setting id="opml_file_6" type="path" label="32017" help="">
+        <setting id="opml_file_6" type="path" label="32017" help="32214">
           <level>0</level>
           <default/>
           <constraints>
@@ -350,7 +350,7 @@
             <heading>32017</heading>
           </control>
         </setting>
-        <setting id="opml_file_7" type="path" label="32018" help="">
+        <setting id="opml_file_7" type="path" label="32018" help="32214">
           <level>0</level>
           <default/>
           <constraints>
@@ -362,7 +362,7 @@
             <heading>32018</heading>
           </control>
         </setting>
-        <setting id="opml_file_8" type="path" label="32019" help="">
+        <setting id="opml_file_8" type="path" label="32019" help="32214">
           <level>0</level>
           <default/>
           <constraints>
@@ -374,7 +374,7 @@
             <heading>32019</heading>
           </control>
         </setting>
-        <setting id="opml_file_9" type="path" label="32020" help="">
+        <setting id="opml_file_9" type="path" label="32020" help="32214">
           <level>0</level>
           <default/>
           <constraints>
@@ -390,12 +390,12 @@
     </category>
     <category id="group_0" label="32001" help="">
       <group id="group_0_group" label="32001">
-        <setting id="group_0_enable" type="boolean" label="305" help="">
+        <setting id="group_0_enable" type="boolean" label="305" help="32215">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
         </setting>
-        <setting id="group_0_name" type="string" label="556" help="">
+        <setting id="group_0_name" type="string" label="556" help="32216">
           <level>0</level>
           <default>News</default>
           <constraints>
@@ -407,7 +407,7 @@
         </setting>
       </group>
       <group id="group_0_rss_0" label="32031">
-        <setting id="group_0_rss_0_enable" type="boolean" label="32024" help="">
+        <setting id="group_0_rss_0_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -415,7 +415,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_0_name" type="string" label="556" help="">
+        <setting id="group_0_rss_0_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -429,7 +429,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_0_url" type="string" label="32022" help="">
+        <setting id="group_0_rss_0_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -456,7 +456,7 @@
         </setting>
       </group>
       <group id="group_0_rss_1" label="32032">
-        <setting id="group_0_rss_1_enable" type="boolean" label="32024" help="">
+        <setting id="group_0_rss_1_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -464,7 +464,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_1_name" type="string" label="556" help="">
+        <setting id="group_0_rss_1_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -478,7 +478,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_1_url" type="string" label="32022" help="">
+        <setting id="group_0_rss_1_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -505,7 +505,7 @@
         </setting>
       </group>
       <group id="group_0_rss_2" label="32033">
-        <setting id="group_0_rss_2_enable" type="boolean" label="32024" help="">
+        <setting id="group_0_rss_2_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -513,7 +513,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_2_name" type="string" label="556" help="">
+        <setting id="group_0_rss_2_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -527,7 +527,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_2_url" type="string" label="32022" help="">
+        <setting id="group_0_rss_2_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -554,7 +554,7 @@
         </setting>
       </group>
       <group id="group_0_rss_3" label="32034">
-        <setting id="group_0_rss_3_enable" type="boolean" label="32024" help="">
+        <setting id="group_0_rss_3_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -562,7 +562,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_3_name" type="string" label="556" help="">
+        <setting id="group_0_rss_3_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -576,7 +576,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_3_url" type="string" label="32022" help="">
+        <setting id="group_0_rss_3_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -603,7 +603,7 @@
         </setting>
       </group>
       <group id="group_0_rss_4" label="32035">
-        <setting id="group_0_rss_4_enable" type="boolean" label="32024" help="">
+        <setting id="group_0_rss_4_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -611,7 +611,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_4_name" type="string" label="556" help="">
+        <setting id="group_0_rss_4_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -625,7 +625,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_4_url" type="string" label="32022" help="">
+        <setting id="group_0_rss_4_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -652,7 +652,7 @@
         </setting>
       </group>
       <group id="group_0_rss_5" label="32036">
-        <setting id="group_0_rss_5_enable" type="boolean" label="32024" help="">
+        <setting id="group_0_rss_5_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -660,7 +660,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_5_name" type="string" label="556" help="">
+        <setting id="group_0_rss_5_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -674,7 +674,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_5_url" type="string" label="32022" help="">
+        <setting id="group_0_rss_5_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -701,7 +701,7 @@
         </setting>
       </group>
       <group id="group_0_rss_6" label="32037">
-        <setting id="group_0_rss_6_enable" type="boolean" label="32024" help="">
+        <setting id="group_0_rss_6_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -709,7 +709,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_6_name" type="string" label="556" help="">
+        <setting id="group_0_rss_6_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -723,7 +723,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_6_url" type="string" label="32022" help="">
+        <setting id="group_0_rss_6_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -750,7 +750,7 @@
         </setting>
       </group>
       <group id="group_0_rss_7" label="32038">
-        <setting id="group_0_rss_7_enable" type="boolean" label="32024" help="">
+        <setting id="group_0_rss_7_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -758,7 +758,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_7_name" type="string" label="556" help="">
+        <setting id="group_0_rss_7_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -772,7 +772,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_7_url" type="string" label="32022" help="">
+        <setting id="group_0_rss_7_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -799,7 +799,7 @@
         </setting>
       </group>
       <group id="group_0_rss_8" label="32039">
-        <setting id="group_0_rss_8_enable" type="boolean" label="32024" help="">
+        <setting id="group_0_rss_8_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -807,7 +807,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_8_name" type="string" label="556" help="">
+        <setting id="group_0_rss_8_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -821,7 +821,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_8_url" type="string" label="32022" help="">
+        <setting id="group_0_rss_8_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -848,7 +848,7 @@
         </setting>
       </group>
       <group id="group_0_rss_9" label="32040">
-        <setting id="group_0_rss_9_enable" type="boolean" label="32024" help="">
+        <setting id="group_0_rss_9_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -856,7 +856,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_9_name" type="string" label="556" help="">
+        <setting id="group_0_rss_9_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -870,7 +870,7 @@
             <dependency type="visible" setting="group_0_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_0_rss_9_url" type="string" label="32022" help="">
+        <setting id="group_0_rss_9_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -899,12 +899,12 @@
     </category>
     <category id="group_1" label="32002" help="">
       <group id="group_1_group" label="32002">
-        <setting id="group_1_enable" type="boolean" label="305" help="">
+        <setting id="group_1_enable" type="boolean" label="305" help="32215">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
         </setting>
-        <setting id="group_1_name" type="string" label="556" help="">
+        <setting id="group_1_name" type="string" label="556" help="32216">
           <level>0</level>
           <default>Sports</default>
           <constraints>
@@ -916,7 +916,7 @@
         </setting>
       </group>
       <group id="group_1_rss_0" label="32031">
-        <setting id="group_1_rss_0_enable" type="boolean" label="32024" help="">
+        <setting id="group_1_rss_0_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -924,7 +924,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_0_name" type="string" label="556" help="">
+        <setting id="group_1_rss_0_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -938,7 +938,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_0_url" type="string" label="32022" help="">
+        <setting id="group_1_rss_0_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -965,7 +965,7 @@
         </setting>
       </group>
       <group id="group_1_rss_1" label="32032">
-        <setting id="group_1_rss_1_enable" type="boolean" label="32024" help="">
+        <setting id="group_1_rss_1_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -973,7 +973,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_1_name" type="string" label="556" help="">
+        <setting id="group_1_rss_1_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -987,7 +987,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_1_url" type="string" label="32022" help="">
+        <setting id="group_1_rss_1_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1014,7 +1014,7 @@
         </setting>
       </group>
       <group id="group_1_rss_2" label="32033">
-        <setting id="group_1_rss_2_enable" type="boolean" label="32024" help="">
+        <setting id="group_1_rss_2_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1022,7 +1022,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_2_name" type="string" label="556" help="">
+        <setting id="group_1_rss_2_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1036,7 +1036,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_2_url" type="string" label="32022" help="">
+        <setting id="group_1_rss_2_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1063,7 +1063,7 @@
         </setting>
       </group>
       <group id="group_1_rss_3" label="32034">
-        <setting id="group_1_rss_3_enable" type="boolean" label="32024" help="">
+        <setting id="group_1_rss_3_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1071,7 +1071,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_3_name" type="string" label="556" help="">
+        <setting id="group_1_rss_3_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1085,7 +1085,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_3_url" type="string" label="32022" help="">
+        <setting id="group_1_rss_3_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1112,7 +1112,7 @@
         </setting>
       </group>
       <group id="group_1_rss_4" label="32035">
-        <setting id="group_1_rss_4_enable" type="boolean" label="32024" help="">
+        <setting id="group_1_rss_4_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1120,7 +1120,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_4_name" type="string" label="556" help="">
+        <setting id="group_1_rss_4_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1134,7 +1134,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_4_url" type="string" label="32022" help="">
+        <setting id="group_1_rss_4_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1161,7 +1161,7 @@
         </setting>
       </group>
       <group id="group_1_rss_5" label="32036">
-        <setting id="group_1_rss_5_enable" type="boolean" label="32024" help="">
+        <setting id="group_1_rss_5_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1169,7 +1169,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_5_name" type="string" label="556" help="">
+        <setting id="group_1_rss_5_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1183,7 +1183,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_5_url" type="string" label="32022" help="">
+        <setting id="group_1_rss_5_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1210,7 +1210,7 @@
         </setting>
       </group>
       <group id="group_1_rss_6" label="32037">
-        <setting id="group_1_rss_6_enable" type="boolean" label="32024" help="">
+        <setting id="group_1_rss_6_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1218,7 +1218,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_6_name" type="string" label="556" help="">
+        <setting id="group_1_rss_6_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1232,7 +1232,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_6_url" type="string" label="32022" help="">
+        <setting id="group_1_rss_6_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1259,7 +1259,7 @@
         </setting>
       </group>
       <group id="group_1_rss_7" label="32038">
-        <setting id="group_1_rss_7_enable" type="boolean" label="32024" help="">
+        <setting id="group_1_rss_7_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1267,7 +1267,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_7_name" type="string" label="556" help="">
+        <setting id="group_1_rss_7_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1281,7 +1281,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_7_url" type="string" label="32022" help="">
+        <setting id="group_1_rss_7_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1308,7 +1308,7 @@
         </setting>
       </group>
       <group id="group_1_rss_8" label="32039">
-        <setting id="group_1_rss_8_enable" type="boolean" label="32024" help="">
+        <setting id="group_1_rss_8_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1316,7 +1316,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_8_name" type="string" label="556" help="">
+        <setting id="group_1_rss_8_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1330,7 +1330,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_8_url" type="string" label="32022" help="">
+        <setting id="group_1_rss_8_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1357,7 +1357,7 @@
         </setting>
       </group>
       <group id="group_1_rss_9" label="32040">
-        <setting id="group_1_rss_9_enable" type="boolean" label="32024" help="">
+        <setting id="group_1_rss_9_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1365,7 +1365,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_9_name" type="string" label="556" help="">
+        <setting id="group_1_rss_9_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1379,7 +1379,7 @@
             <dependency type="visible" setting="group_1_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_1_rss_9_url" type="string" label="32022" help="">
+        <setting id="group_1_rss_9_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1408,12 +1408,12 @@
     </category>
     <category id="group_2" label="32003" help="">
       <group id="group_2_group" label="32003">
-        <setting id="group_2_enable" type="boolean" label="305" help="">
+        <setting id="group_2_enable" type="boolean" label="305" help="32215">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
         </setting>
-        <setting id="group_2_name" type="string" label="556" help="">
+        <setting id="group_2_name" type="string" label="556" help="32216">
           <level>0</level>
           <default>Economie &amp; Commerce</default>
           <constraints>
@@ -1425,7 +1425,7 @@
         </setting>
       </group>
       <group id="group_2_rss_0" label="32031">
-        <setting id="group_2_rss_0_enable" type="boolean" label="32024" help="">
+        <setting id="group_2_rss_0_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1433,7 +1433,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_0_name" type="string" label="556" help="">
+        <setting id="group_2_rss_0_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1447,7 +1447,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_0_url" type="string" label="32022" help="">
+        <setting id="group_2_rss_0_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1474,7 +1474,7 @@
         </setting>
       </group>
       <group id="group_2_rss_1" label="32032">
-        <setting id="group_2_rss_1_enable" type="boolean" label="32024" help="">
+        <setting id="group_2_rss_1_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1482,7 +1482,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_1_name" type="string" label="556" help="">
+        <setting id="group_2_rss_1_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1496,7 +1496,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_1_url" type="string" label="32022" help="">
+        <setting id="group_2_rss_1_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1523,7 +1523,7 @@
         </setting>
       </group>
       <group id="group_2_rss_2" label="32033">
-        <setting id="group_2_rss_2_enable" type="boolean" label="32024" help="">
+        <setting id="group_2_rss_2_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1531,7 +1531,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_2_name" type="string" label="556" help="">
+        <setting id="group_2_rss_2_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1545,7 +1545,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_2_url" type="string" label="32022" help="">
+        <setting id="group_2_rss_2_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1572,7 +1572,7 @@
         </setting>
       </group>
       <group id="group_2_rss_3" label="32034">
-        <setting id="group_2_rss_3_enable" type="boolean" label="32024" help="">
+        <setting id="group_2_rss_3_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1580,7 +1580,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_3_name" type="string" label="556" help="">
+        <setting id="group_2_rss_3_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1594,7 +1594,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_3_url" type="string" label="32022" help="">
+        <setting id="group_2_rss_3_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1621,7 +1621,7 @@
         </setting>
       </group>
       <group id="group_2_rss_4" label="32035">
-        <setting id="group_2_rss_4_enable" type="boolean" label="32024" help="">
+        <setting id="group_2_rss_4_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1629,7 +1629,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_4_name" type="string" label="556" help="">
+        <setting id="group_2_rss_4_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1643,7 +1643,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_4_url" type="string" label="32022" help="">
+        <setting id="group_2_rss_4_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1670,7 +1670,7 @@
         </setting>
       </group>
       <group id="group_2_rss_5" label="32036">
-        <setting id="group_2_rss_5_enable" type="boolean" label="32024" help="">
+        <setting id="group_2_rss_5_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1678,7 +1678,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_5_name" type="string" label="556" help="">
+        <setting id="group_2_rss_5_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1692,7 +1692,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_5_url" type="string" label="32022" help="">
+        <setting id="group_2_rss_5_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1719,7 +1719,7 @@
         </setting>
       </group>
       <group id="group_2_rss_6" label="32037">
-        <setting id="group_2_rss_6_enable" type="boolean" label="32024" help="">
+        <setting id="group_2_rss_6_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1727,7 +1727,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_6_name" type="string" label="556" help="">
+        <setting id="group_2_rss_6_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1741,7 +1741,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_6_url" type="string" label="32022" help="">
+        <setting id="group_2_rss_6_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1768,7 +1768,7 @@
         </setting>
       </group>
       <group id="group_2_rss_7" label="32038">
-        <setting id="group_2_rss_7_enable" type="boolean" label="32024" help="">
+        <setting id="group_2_rss_7_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1776,7 +1776,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_7_name" type="string" label="556" help="">
+        <setting id="group_2_rss_7_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1790,7 +1790,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_7_url" type="string" label="32022" help="">
+        <setting id="group_2_rss_7_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1817,7 +1817,7 @@
         </setting>
       </group>
       <group id="group_2_rss_8" label="32039">
-        <setting id="group_2_rss_8_enable" type="boolean" label="32024" help="">
+        <setting id="group_2_rss_8_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1825,7 +1825,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_8_name" type="string" label="556" help="">
+        <setting id="group_2_rss_8_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1839,7 +1839,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_8_url" type="string" label="32022" help="">
+        <setting id="group_2_rss_8_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1866,7 +1866,7 @@
         </setting>
       </group>
       <group id="group_2_rss_9" label="32040">
-        <setting id="group_2_rss_9_enable" type="boolean" label="32024" help="">
+        <setting id="group_2_rss_9_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1874,7 +1874,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_9_name" type="string" label="556" help="">
+        <setting id="group_2_rss_9_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1888,7 +1888,7 @@
             <dependency type="visible" setting="group_2_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_2_rss_9_url" type="string" label="32022" help="">
+        <setting id="group_2_rss_9_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1917,12 +1917,12 @@
     </category>
     <category id="group_3" label="32004" help="">
       <group id="group_3_group" label="32004">
-        <setting id="group_3_enable" type="boolean" label="305" help="">
+        <setting id="group_3_enable" type="boolean" label="305" help="32215">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
         </setting>
-        <setting id="group_3_name" type="string" label="556" help="">
+        <setting id="group_3_name" type="string" label="556" help="32216">
           <level>0</level>
           <default>History, Politics &amp; Society</default>
           <constraints>
@@ -1934,7 +1934,7 @@
         </setting>
       </group>
       <group id="group_3_rss_0" label="32031">
-        <setting id="group_3_rss_0_enable" type="boolean" label="32024" help="">
+        <setting id="group_3_rss_0_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1942,7 +1942,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_0_name" type="string" label="556" help="">
+        <setting id="group_3_rss_0_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -1956,7 +1956,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_0_url" type="string" label="32022" help="">
+        <setting id="group_3_rss_0_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -1983,7 +1983,7 @@
         </setting>
       </group>
       <group id="group_3_rss_1" label="32032">
-        <setting id="group_3_rss_1_enable" type="boolean" label="32024" help="">
+        <setting id="group_3_rss_1_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -1991,7 +1991,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_1_name" type="string" label="556" help="">
+        <setting id="group_3_rss_1_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2005,7 +2005,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_1_url" type="string" label="32022" help="">
+        <setting id="group_3_rss_1_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2032,7 +2032,7 @@
         </setting>
       </group>
       <group id="group_3_rss_2" label="32033">
-        <setting id="group_3_rss_2_enable" type="boolean" label="32024" help="">
+        <setting id="group_3_rss_2_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2040,7 +2040,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_2_name" type="string" label="556" help="">
+        <setting id="group_3_rss_2_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2054,7 +2054,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_2_url" type="string" label="32022" help="">
+        <setting id="group_3_rss_2_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2081,7 +2081,7 @@
         </setting>
       </group>
       <group id="group_3_rss_3" label="32034">
-        <setting id="group_3_rss_3_enable" type="boolean" label="32024" help="">
+        <setting id="group_3_rss_3_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2089,7 +2089,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_3_name" type="string" label="556" help="">
+        <setting id="group_3_rss_3_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2103,7 +2103,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_3_url" type="string" label="32022" help="">
+        <setting id="group_3_rss_3_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2130,7 +2130,7 @@
         </setting>
       </group>
       <group id="group_3_rss_4" label="32035">
-        <setting id="group_3_rss_4_enable" type="boolean" label="32024" help="">
+        <setting id="group_3_rss_4_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2138,7 +2138,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_4_name" type="string" label="556" help="">
+        <setting id="group_3_rss_4_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2152,7 +2152,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_4_url" type="string" label="32022" help="">
+        <setting id="group_3_rss_4_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2179,7 +2179,7 @@
         </setting>
       </group>
       <group id="group_3_rss_5" label="32036">
-        <setting id="group_3_rss_5_enable" type="boolean" label="32024" help="">
+        <setting id="group_3_rss_5_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2187,7 +2187,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_5_name" type="string" label="556" help="">
+        <setting id="group_3_rss_5_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2201,7 +2201,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_5_url" type="string" label="32022" help="">
+        <setting id="group_3_rss_5_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2228,7 +2228,7 @@
         </setting>
       </group>
       <group id="group_3_rss_6" label="32037">
-        <setting id="group_3_rss_6_enable" type="boolean" label="32024" help="">
+        <setting id="group_3_rss_6_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2236,7 +2236,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_6_name" type="string" label="556" help="">
+        <setting id="group_3_rss_6_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2250,7 +2250,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_6_url" type="string" label="32022" help="">
+        <setting id="group_3_rss_6_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2277,7 +2277,7 @@
         </setting>
       </group>
       <group id="group_3_rss_7" label="32038">
-        <setting id="group_3_rss_7_enable" type="boolean" label="32024" help="">
+        <setting id="group_3_rss_7_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2285,7 +2285,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_7_name" type="string" label="556" help="">
+        <setting id="group_3_rss_7_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2299,7 +2299,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_7_url" type="string" label="32022" help="">
+        <setting id="group_3_rss_7_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2326,7 +2326,7 @@
         </setting>
       </group>
       <group id="group_3_rss_8" label="32039">
-        <setting id="group_3_rss_8_enable" type="boolean" label="32024" help="">
+        <setting id="group_3_rss_8_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2334,7 +2334,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_8_name" type="string" label="556" help="">
+        <setting id="group_3_rss_8_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2348,7 +2348,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_8_url" type="string" label="32022" help="">
+        <setting id="group_3_rss_8_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2375,7 +2375,7 @@
         </setting>
       </group>
       <group id="group_3_rss_9" label="32040">
-        <setting id="group_3_rss_9_enable" type="boolean" label="32024" help="">
+        <setting id="group_3_rss_9_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2383,7 +2383,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_9_name" type="string" label="556" help="">
+        <setting id="group_3_rss_9_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2397,7 +2397,7 @@
             <dependency type="visible" setting="group_3_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_3_rss_9_url" type="string" label="32022" help="">
+        <setting id="group_3_rss_9_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2426,12 +2426,12 @@
     </category>
     <category id="group_4" label="32005" help="">
       <group id="group_4_group" label="32005">
-        <setting id="group_4_enable" type="boolean" label="305" help="">
+        <setting id="group_4_enable" type="boolean" label="305" help="32215">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
         </setting>
-        <setting id="group_4_name" type="string" label="556" help="">
+        <setting id="group_4_name" type="string" label="556" help="32216">
           <level>0</level>
           <default>Science &amp; Education</default>
           <constraints>
@@ -2443,7 +2443,7 @@
         </setting>
       </group>
       <group id="group_4_rss_0" label="32031">
-        <setting id="group_4_rss_0_enable" type="boolean" label="32024" help="">
+        <setting id="group_4_rss_0_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2451,7 +2451,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_0_name" type="string" label="556" help="">
+        <setting id="group_4_rss_0_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2465,7 +2465,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_0_url" type="string" label="32022" help="">
+        <setting id="group_4_rss_0_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2492,7 +2492,7 @@
         </setting>
       </group>
       <group id="group_4_rss_1" label="32032">
-        <setting id="group_4_rss_1_enable" type="boolean" label="32024" help="">
+        <setting id="group_4_rss_1_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2500,7 +2500,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_1_name" type="string" label="556" help="">
+        <setting id="group_4_rss_1_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2514,7 +2514,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_1_url" type="string" label="32022" help="">
+        <setting id="group_4_rss_1_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2541,7 +2541,7 @@
         </setting>
       </group>
       <group id="group_4_rss_2" label="32033">
-        <setting id="group_4_rss_2_enable" type="boolean" label="32024" help="">
+        <setting id="group_4_rss_2_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2549,7 +2549,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_2_name" type="string" label="556" help="">
+        <setting id="group_4_rss_2_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2563,7 +2563,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_2_url" type="string" label="32022" help="">
+        <setting id="group_4_rss_2_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2590,7 +2590,7 @@
         </setting>
       </group>
       <group id="group_4_rss_3" label="32034">
-        <setting id="group_4_rss_3_enable" type="boolean" label="32024" help="">
+        <setting id="group_4_rss_3_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2598,7 +2598,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_3_name" type="string" label="556" help="">
+        <setting id="group_4_rss_3_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2612,7 +2612,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_3_url" type="string" label="32022" help="">
+        <setting id="group_4_rss_3_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2639,7 +2639,7 @@
         </setting>
       </group>
       <group id="group_4_rss_4" label="32035">
-        <setting id="group_4_rss_4_enable" type="boolean" label="32024" help="">
+        <setting id="group_4_rss_4_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2647,7 +2647,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_4_name" type="string" label="556" help="">
+        <setting id="group_4_rss_4_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2661,7 +2661,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_4_url" type="string" label="32022" help="">
+        <setting id="group_4_rss_4_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2688,7 +2688,7 @@
         </setting>
       </group>
       <group id="group_4_rss_5" label="32036">
-        <setting id="group_4_rss_5_enable" type="boolean" label="32024" help="">
+        <setting id="group_4_rss_5_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2696,7 +2696,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_5_name" type="string" label="556" help="">
+        <setting id="group_4_rss_5_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2710,7 +2710,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_5_url" type="string" label="32022" help="">
+        <setting id="group_4_rss_5_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2737,7 +2737,7 @@
         </setting>
       </group>
       <group id="group_4_rss_6" label="32037">
-        <setting id="group_4_rss_6_enable" type="boolean" label="32024" help="">
+        <setting id="group_4_rss_6_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2745,7 +2745,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_6_name" type="string" label="556" help="">
+        <setting id="group_4_rss_6_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2759,7 +2759,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_6_url" type="string" label="32022" help="">
+        <setting id="group_4_rss_6_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2786,7 +2786,7 @@
         </setting>
       </group>
       <group id="group_4_rss_7" label="32038">
-        <setting id="group_4_rss_7_enable" type="boolean" label="32024" help="">
+        <setting id="group_4_rss_7_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2794,7 +2794,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_7_name" type="string" label="556" help="">
+        <setting id="group_4_rss_7_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2808,7 +2808,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_7_url" type="string" label="32022" help="">
+        <setting id="group_4_rss_7_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2835,7 +2835,7 @@
         </setting>
       </group>
       <group id="group_4_rss_8" label="32039">
-        <setting id="group_4_rss_8_enable" type="boolean" label="32024" help="">
+        <setting id="group_4_rss_8_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2843,7 +2843,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_8_name" type="string" label="556" help="">
+        <setting id="group_4_rss_8_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2857,7 +2857,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_8_url" type="string" label="32022" help="">
+        <setting id="group_4_rss_8_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2884,7 +2884,7 @@
         </setting>
       </group>
       <group id="group_4_rss_9" label="32040">
-        <setting id="group_4_rss_9_enable" type="boolean" label="32024" help="">
+        <setting id="group_4_rss_9_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2892,7 +2892,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_9_name" type="string" label="556" help="">
+        <setting id="group_4_rss_9_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2906,7 +2906,7 @@
             <dependency type="visible" setting="group_4_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_4_rss_9_url" type="string" label="32022" help="">
+        <setting id="group_4_rss_9_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -2935,12 +2935,12 @@
     </category>
     <category id="group_5" label="32006" help="">
       <group id="group_5_group" label="32006">
-        <setting id="group_5_enable" type="boolean" label="305" help="">
+        <setting id="group_5_enable" type="boolean" label="305" help="32215">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
         </setting>
-        <setting id="group_5_name" type="string" label="556" help="">
+        <setting id="group_5_name" type="string" label="556" help="32216">
           <level>0</level>
           <default>Entertainment</default>
           <constraints>
@@ -2952,7 +2952,7 @@
         </setting>
       </group>
       <group id="group_5_rss_0" label="32031">
-        <setting id="group_5_rss_0_enable" type="boolean" label="32024" help="">
+        <setting id="group_5_rss_0_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -2960,7 +2960,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_0_name" type="string" label="556" help="">
+        <setting id="group_5_rss_0_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -2974,7 +2974,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_0_url" type="string" label="32022" help="">
+        <setting id="group_5_rss_0_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3001,7 +3001,7 @@
         </setting>
       </group>
       <group id="group_5_rss_1" label="32032">
-        <setting id="group_5_rss_1_enable" type="boolean" label="32024" help="">
+        <setting id="group_5_rss_1_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3009,7 +3009,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_1_name" type="string" label="556" help="">
+        <setting id="group_5_rss_1_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3023,7 +3023,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_1_url" type="string" label="32022" help="">
+        <setting id="group_5_rss_1_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3050,7 +3050,7 @@
         </setting>
       </group>
       <group id="group_5_rss_2" label="32033">
-        <setting id="group_5_rss_2_enable" type="boolean" label="32024" help="">
+        <setting id="group_5_rss_2_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3058,7 +3058,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_2_name" type="string" label="556" help="">
+        <setting id="group_5_rss_2_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3072,7 +3072,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_2_url" type="string" label="32022" help="">
+        <setting id="group_5_rss_2_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3099,7 +3099,7 @@
         </setting>
       </group>
       <group id="group_5_rss_3" label="32034">
-        <setting id="group_5_rss_3_enable" type="boolean" label="32024" help="">
+        <setting id="group_5_rss_3_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3107,7 +3107,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_3_name" type="string" label="556" help="">
+        <setting id="group_5_rss_3_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3121,7 +3121,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_3_url" type="string" label="32022" help="">
+        <setting id="group_5_rss_3_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3148,7 +3148,7 @@
         </setting>
       </group>
       <group id="group_5_rss_4" label="32035">
-        <setting id="group_5_rss_4_enable" type="boolean" label="32024" help="">
+        <setting id="group_5_rss_4_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3156,7 +3156,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_4_name" type="string" label="556" help="">
+        <setting id="group_5_rss_4_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3170,7 +3170,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_4_url" type="string" label="32022" help="">
+        <setting id="group_5_rss_4_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3197,7 +3197,7 @@
         </setting>
       </group>
       <group id="group_5_rss_5" label="32036">
-        <setting id="group_5_rss_5_enable" type="boolean" label="32024" help="">
+        <setting id="group_5_rss_5_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3205,7 +3205,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_5_name" type="string" label="556" help="">
+        <setting id="group_5_rss_5_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3219,7 +3219,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_5_url" type="string" label="32022" help="">
+        <setting id="group_5_rss_5_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3246,7 +3246,7 @@
         </setting>
       </group>
       <group id="group_5_rss_6" label="32037">
-        <setting id="group_5_rss_6_enable" type="boolean" label="32024" help="">
+        <setting id="group_5_rss_6_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3254,7 +3254,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_6_name" type="string" label="556" help="">
+        <setting id="group_5_rss_6_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3268,7 +3268,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_6_url" type="string" label="32022" help="">
+        <setting id="group_5_rss_6_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3295,7 +3295,7 @@
         </setting>
       </group>
       <group id="group_5_rss_7" label="32038">
-        <setting id="group_5_rss_7_enable" type="boolean" label="32024" help="">
+        <setting id="group_5_rss_7_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3303,7 +3303,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_7_name" type="string" label="556" help="">
+        <setting id="group_5_rss_7_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3317,7 +3317,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_7_url" type="string" label="32022" help="">
+        <setting id="group_5_rss_7_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3344,7 +3344,7 @@
         </setting>
       </group>
       <group id="group_5_rss_8" label="32039">
-        <setting id="group_5_rss_8_enable" type="boolean" label="32024" help="">
+        <setting id="group_5_rss_8_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3352,7 +3352,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_8_name" type="string" label="556" help="">
+        <setting id="group_5_rss_8_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3366,7 +3366,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_8_url" type="string" label="32022" help="">
+        <setting id="group_5_rss_8_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3393,7 +3393,7 @@
         </setting>
       </group>
       <group id="group_5_rss_9" label="32040">
-        <setting id="group_5_rss_9_enable" type="boolean" label="32024" help="">
+        <setting id="group_5_rss_9_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3401,7 +3401,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_9_name" type="string" label="556" help="">
+        <setting id="group_5_rss_9_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3415,7 +3415,7 @@
             <dependency type="visible" setting="group_5_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_5_rss_9_url" type="string" label="32022" help="">
+        <setting id="group_5_rss_9_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3444,12 +3444,12 @@
     </category>
     <category id="group_6" label="32007" help="">
       <group id="group_6_group" label="32007">
-        <setting id="group_6_enable" type="boolean" label="305" help="">
+        <setting id="group_6_enable" type="boolean" label="305" help="32215">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
         </setting>
-        <setting id="group_6_name" type="string" label="556" help="">
+        <setting id="group_6_name" type="string" label="556" help="32216">
           <level>0</level>
           <default>Arts &amp; Culture</default>
           <constraints>
@@ -3461,7 +3461,7 @@
         </setting>
       </group>
       <group id="group_6_rss_0" label="32031">
-        <setting id="group_6_rss_0_enable" type="boolean" label="32024" help="">
+        <setting id="group_6_rss_0_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3469,7 +3469,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_0_name" type="string" label="556" help="">
+        <setting id="group_6_rss_0_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3483,7 +3483,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_0_url" type="string" label="32022" help="">
+        <setting id="group_6_rss_0_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3510,7 +3510,7 @@
         </setting>
       </group>
       <group id="group_6_rss_1" label="32032">
-        <setting id="group_6_rss_1_enable" type="boolean" label="32024" help="">
+        <setting id="group_6_rss_1_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3518,7 +3518,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_1_name" type="string" label="556" help="">
+        <setting id="group_6_rss_1_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3532,7 +3532,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_1_url" type="string" label="32022" help="">
+        <setting id="group_6_rss_1_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3559,7 +3559,7 @@
         </setting>
       </group>
       <group id="group_6_rss_2" label="32033">
-        <setting id="group_6_rss_2_enable" type="boolean" label="32024" help="">
+        <setting id="group_6_rss_2_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3567,7 +3567,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_2_name" type="string" label="556" help="">
+        <setting id="group_6_rss_2_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3581,7 +3581,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_2_url" type="string" label="32022" help="">
+        <setting id="group_6_rss_2_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3608,7 +3608,7 @@
         </setting>
       </group>
       <group id="group_6_rss_3" label="32034">
-        <setting id="group_6_rss_3_enable" type="boolean" label="32024" help="">
+        <setting id="group_6_rss_3_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3616,7 +3616,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_3_name" type="string" label="556" help="">
+        <setting id="group_6_rss_3_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3630,7 +3630,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_3_url" type="string" label="32022" help="">
+        <setting id="group_6_rss_3_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3657,7 +3657,7 @@
         </setting>
       </group>
       <group id="group_6_rss_4" label="32035">
-        <setting id="group_6_rss_4_enable" type="boolean" label="32024" help="">
+        <setting id="group_6_rss_4_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3665,7 +3665,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_4_name" type="string" label="556" help="">
+        <setting id="group_6_rss_4_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3679,7 +3679,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_4_url" type="string" label="32022" help="">
+        <setting id="group_6_rss_4_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3706,7 +3706,7 @@
         </setting>
       </group>
       <group id="group_6_rss_5" label="32036">
-        <setting id="group_6_rss_5_enable" type="boolean" label="32024" help="">
+        <setting id="group_6_rss_5_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3714,7 +3714,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_5_name" type="string" label="556" help="">
+        <setting id="group_6_rss_5_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3728,7 +3728,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_5_url" type="string" label="32022" help="">
+        <setting id="group_6_rss_5_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3755,7 +3755,7 @@
         </setting>
       </group>
       <group id="group_6_rss_6" label="32037">
-        <setting id="group_6_rss_6_enable" type="boolean" label="32024" help="">
+        <setting id="group_6_rss_6_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3763,7 +3763,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_6_name" type="string" label="556" help="">
+        <setting id="group_6_rss_6_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3777,7 +3777,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_6_url" type="string" label="32022" help="">
+        <setting id="group_6_rss_6_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3804,7 +3804,7 @@
         </setting>
       </group>
       <group id="group_6_rss_7" label="32038">
-        <setting id="group_6_rss_7_enable" type="boolean" label="32024" help="">
+        <setting id="group_6_rss_7_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3812,7 +3812,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_7_name" type="string" label="556" help="">
+        <setting id="group_6_rss_7_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3826,7 +3826,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_7_url" type="string" label="32022" help="">
+        <setting id="group_6_rss_7_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3853,7 +3853,7 @@
         </setting>
       </group>
       <group id="group_6_rss_8" label="32039">
-        <setting id="group_6_rss_8_enable" type="boolean" label="32024" help="">
+        <setting id="group_6_rss_8_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3861,7 +3861,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_8_name" type="string" label="556" help="">
+        <setting id="group_6_rss_8_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3875,7 +3875,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_8_url" type="string" label="32022" help="">
+        <setting id="group_6_rss_8_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3902,7 +3902,7 @@
         </setting>
       </group>
       <group id="group_6_rss_9" label="32040">
-        <setting id="group_6_rss_9_enable" type="boolean" label="32024" help="">
+        <setting id="group_6_rss_9_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3910,7 +3910,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_9_name" type="string" label="556" help="">
+        <setting id="group_6_rss_9_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3924,7 +3924,7 @@
             <dependency type="visible" setting="group_6_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_6_rss_9_url" type="string" label="32022" help="">
+        <setting id="group_6_rss_9_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -3953,12 +3953,12 @@
     </category>
     <category id="group_7" label="32008" help="">
       <group id="group_7_group" label="32008">
-        <setting id="group_7_enable" type="boolean" label="305" help="">
+        <setting id="group_7_enable" type="boolean" label="305" help="32215">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
         </setting>
-        <setting id="group_7_name" type="string" label="556" help="">
+        <setting id="group_7_name" type="string" label="556" help="32216">
           <level>0</level>
           <default>Movies &amp; Music</default>
           <constraints>
@@ -3970,7 +3970,7 @@
         </setting>
       </group>
       <group id="group_7_rss_0" label="32031">
-        <setting id="group_7_rss_0_enable" type="boolean" label="32024" help="">
+        <setting id="group_7_rss_0_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -3978,7 +3978,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_0_name" type="string" label="556" help="">
+        <setting id="group_7_rss_0_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -3992,7 +3992,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_0_url" type="string" label="32022" help="">
+        <setting id="group_7_rss_0_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4019,7 +4019,7 @@
         </setting>
       </group>
       <group id="group_7_rss_1" label="32032">
-        <setting id="group_7_rss_1_enable" type="boolean" label="32024" help="">
+        <setting id="group_7_rss_1_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4027,7 +4027,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_1_name" type="string" label="556" help="">
+        <setting id="group_7_rss_1_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4041,7 +4041,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_1_url" type="string" label="32022" help="">
+        <setting id="group_7_rss_1_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4068,7 +4068,7 @@
         </setting>
       </group>
       <group id="group_7_rss_2" label="32033">
-        <setting id="group_7_rss_2_enable" type="boolean" label="32024" help="">
+        <setting id="group_7_rss_2_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4076,7 +4076,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_2_name" type="string" label="556" help="">
+        <setting id="group_7_rss_2_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4090,7 +4090,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_2_url" type="string" label="32022" help="">
+        <setting id="group_7_rss_2_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4117,7 +4117,7 @@
         </setting>
       </group>
       <group id="group_7_rss_3" label="32034">
-        <setting id="group_7_rss_3_enable" type="boolean" label="32024" help="">
+        <setting id="group_7_rss_3_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4125,7 +4125,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_3_name" type="string" label="556" help="">
+        <setting id="group_7_rss_3_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4139,7 +4139,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_3_url" type="string" label="32022" help="">
+        <setting id="group_7_rss_3_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4166,7 +4166,7 @@
         </setting>
       </group>
       <group id="group_7_rss_4" label="32035">
-        <setting id="group_7_rss_4_enable" type="boolean" label="32024" help="">
+        <setting id="group_7_rss_4_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4174,7 +4174,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_4_name" type="string" label="556" help="">
+        <setting id="group_7_rss_4_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4188,7 +4188,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_4_url" type="string" label="32022" help="">
+        <setting id="group_7_rss_4_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4215,7 +4215,7 @@
         </setting>
       </group>
       <group id="group_7_rss_5" label="32036">
-        <setting id="group_7_rss_5_enable" type="boolean" label="32024" help="">
+        <setting id="group_7_rss_5_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4223,7 +4223,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_5_name" type="string" label="556" help="">
+        <setting id="group_7_rss_5_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4237,7 +4237,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_5_url" type="string" label="32022" help="">
+        <setting id="group_7_rss_5_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4264,7 +4264,7 @@
         </setting>
       </group>
       <group id="group_7_rss_6" label="32037">
-        <setting id="group_7_rss_6_enable" type="boolean" label="32024" help="">
+        <setting id="group_7_rss_6_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4272,7 +4272,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_6_name" type="string" label="556" help="">
+        <setting id="group_7_rss_6_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4286,7 +4286,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_6_url" type="string" label="32022" help="">
+        <setting id="group_7_rss_6_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4313,7 +4313,7 @@
         </setting>
       </group>
       <group id="group_7_rss_7" label="32038">
-        <setting id="group_7_rss_7_enable" type="boolean" label="32024" help="">
+        <setting id="group_7_rss_7_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4321,7 +4321,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_7_name" type="string" label="556" help="">
+        <setting id="group_7_rss_7_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4335,7 +4335,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_7_url" type="string" label="32022" help="">
+        <setting id="group_7_rss_7_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4362,7 +4362,7 @@
         </setting>
       </group>
       <group id="group_7_rss_8" label="32039">
-        <setting id="group_7_rss_8_enable" type="boolean" label="32024" help="">
+        <setting id="group_7_rss_8_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4370,7 +4370,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_8_name" type="string" label="556" help="">
+        <setting id="group_7_rss_8_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4384,7 +4384,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_8_url" type="string" label="32022" help="">
+        <setting id="group_7_rss_8_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4411,7 +4411,7 @@
         </setting>
       </group>
       <group id="group_7_rss_9" label="32040">
-        <setting id="group_7_rss_9_enable" type="boolean" label="32024" help="">
+        <setting id="group_7_rss_9_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4419,7 +4419,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_9_name" type="string" label="556" help="">
+        <setting id="group_7_rss_9_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4433,7 +4433,7 @@
             <dependency type="visible" setting="group_7_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_7_rss_9_url" type="string" label="32022" help="">
+        <setting id="group_7_rss_9_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4462,12 +4462,12 @@
     </category>
     <category id="group_8" label="32009" help="">
       <group id="group_8_group" label="32009">
-        <setting id="group_8_enable" type="boolean" label="305" help="">
+        <setting id="group_8_enable" type="boolean" label="305" help="32215">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
         </setting>
-        <setting id="group_8_name" type="string" label="556" help="">
+        <setting id="group_8_name" type="string" label="556" help="32216">
           <level>0</level>
           <default>Games &amp; hobbies</default>
           <constraints>
@@ -4479,7 +4479,7 @@
         </setting>
       </group>
       <group id="group_8_rss_0" label="32031">
-        <setting id="group_8_rss_0_enable" type="boolean" label="32024" help="">
+        <setting id="group_8_rss_0_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4487,7 +4487,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_0_name" type="string" label="556" help="">
+        <setting id="group_8_rss_0_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4501,7 +4501,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_0_url" type="string" label="32022" help="">
+        <setting id="group_8_rss_0_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4528,7 +4528,7 @@
         </setting>
       </group>
       <group id="group_8_rss_1" label="32032">
-        <setting id="group_8_rss_1_enable" type="boolean" label="32024" help="">
+        <setting id="group_8_rss_1_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4536,7 +4536,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_1_name" type="string" label="556" help="">
+        <setting id="group_8_rss_1_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4550,7 +4550,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_1_url" type="string" label="32022" help="">
+        <setting id="group_8_rss_1_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4577,7 +4577,7 @@
         </setting>
       </group>
       <group id="group_8_rss_2" label="32033">
-        <setting id="group_8_rss_2_enable" type="boolean" label="32024" help="">
+        <setting id="group_8_rss_2_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4585,7 +4585,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_2_name" type="string" label="556" help="">
+        <setting id="group_8_rss_2_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4599,7 +4599,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_2_url" type="string" label="32022" help="">
+        <setting id="group_8_rss_2_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4626,7 +4626,7 @@
         </setting>
       </group>
       <group id="group_8_rss_3" label="32034">
-        <setting id="group_8_rss_3_enable" type="boolean" label="32024" help="">
+        <setting id="group_8_rss_3_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4634,7 +4634,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_3_name" type="string" label="556" help="">
+        <setting id="group_8_rss_3_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4648,7 +4648,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_3_url" type="string" label="32022" help="">
+        <setting id="group_8_rss_3_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4675,7 +4675,7 @@
         </setting>
       </group>
       <group id="group_8_rss_4" label="32035">
-        <setting id="group_8_rss_4_enable" type="boolean" label="32024" help="">
+        <setting id="group_8_rss_4_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4683,7 +4683,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_4_name" type="string" label="556" help="">
+        <setting id="group_8_rss_4_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4697,7 +4697,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_4_url" type="string" label="32022" help="">
+        <setting id="group_8_rss_4_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4724,7 +4724,7 @@
         </setting>
       </group>
       <group id="group_8_rss_5" label="32036">
-        <setting id="group_8_rss_5_enable" type="boolean" label="32024" help="">
+        <setting id="group_8_rss_5_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4732,7 +4732,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_5_name" type="string" label="556" help="">
+        <setting id="group_8_rss_5_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4746,7 +4746,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_5_url" type="string" label="32022" help="">
+        <setting id="group_8_rss_5_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4773,7 +4773,7 @@
         </setting>
       </group>
       <group id="group_8_rss_6" label="32037">
-        <setting id="group_8_rss_6_enable" type="boolean" label="32024" help="">
+        <setting id="group_8_rss_6_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4781,7 +4781,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_6_name" type="string" label="556" help="">
+        <setting id="group_8_rss_6_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4795,7 +4795,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_6_url" type="string" label="32022" help="">
+        <setting id="group_8_rss_6_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4822,7 +4822,7 @@
         </setting>
       </group>
       <group id="group_8_rss_7" label="32038">
-        <setting id="group_8_rss_7_enable" type="boolean" label="32024" help="">
+        <setting id="group_8_rss_7_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4830,7 +4830,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_7_name" type="string" label="556" help="">
+        <setting id="group_8_rss_7_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4844,7 +4844,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_7_url" type="string" label="32022" help="">
+        <setting id="group_8_rss_7_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4871,7 +4871,7 @@
         </setting>
       </group>
       <group id="group_8_rss_8" label="32039">
-        <setting id="group_8_rss_8_enable" type="boolean" label="32024" help="">
+        <setting id="group_8_rss_8_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4879,7 +4879,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_8_name" type="string" label="556" help="">
+        <setting id="group_8_rss_8_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4893,7 +4893,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_8_url" type="string" label="32022" help="">
+        <setting id="group_8_rss_8_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4920,7 +4920,7 @@
         </setting>
       </group>
       <group id="group_8_rss_9" label="32040">
-        <setting id="group_8_rss_9_enable" type="boolean" label="32024" help="">
+        <setting id="group_8_rss_9_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4928,7 +4928,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_9_name" type="string" label="556" help="">
+        <setting id="group_8_rss_9_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -4942,7 +4942,7 @@
             <dependency type="visible" setting="group_8_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_8_rss_9_url" type="string" label="32022" help="">
+        <setting id="group_8_rss_9_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -4971,12 +4971,12 @@
     </category>
     <category id="group_9" label="32010" help="">
       <group id="group_9_group" label="32010">
-        <setting id="group_9_enable" type="boolean" label="305" help="">
+        <setting id="group_9_enable" type="boolean" label="305" help="32215">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
         </setting>
-        <setting id="group_9_name" type="string" label="556" help="">
+        <setting id="group_9_name" type="string" label="556" help="32216">
           <level>0</level>
           <default>Technology</default>
           <constraints>
@@ -4988,7 +4988,7 @@
         </setting>
       </group>
       <group id="group_9_rss_0" label="32031">
-        <setting id="group_9_rss_0_enable" type="boolean" label="32024" help="">
+        <setting id="group_9_rss_0_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -4996,7 +4996,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_0_name" type="string" label="556" help="">
+        <setting id="group_9_rss_0_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -5010,7 +5010,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_0_url" type="string" label="32022" help="">
+        <setting id="group_9_rss_0_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -5037,7 +5037,7 @@
         </setting>
       </group>
       <group id="group_9_rss_1" label="32032">
-        <setting id="group_9_rss_1_enable" type="boolean" label="32024" help="">
+        <setting id="group_9_rss_1_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -5045,7 +5045,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_1_name" type="string" label="556" help="">
+        <setting id="group_9_rss_1_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -5059,7 +5059,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_1_url" type="string" label="32022" help="">
+        <setting id="group_9_rss_1_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -5086,7 +5086,7 @@
         </setting>
       </group>
       <group id="group_9_rss_2" label="32033">
-        <setting id="group_9_rss_2_enable" type="boolean" label="32024" help="">
+        <setting id="group_9_rss_2_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -5094,7 +5094,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_2_name" type="string" label="556" help="">
+        <setting id="group_9_rss_2_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -5108,7 +5108,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_2_url" type="string" label="32022" help="">
+        <setting id="group_9_rss_2_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -5135,7 +5135,7 @@
         </setting>
       </group>
       <group id="group_9_rss_3" label="32034">
-        <setting id="group_9_rss_3_enable" type="boolean" label="32024" help="">
+        <setting id="group_9_rss_3_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -5143,7 +5143,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_3_name" type="string" label="556" help="">
+        <setting id="group_9_rss_3_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -5157,7 +5157,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_3_url" type="string" label="32022" help="">
+        <setting id="group_9_rss_3_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -5184,7 +5184,7 @@
         </setting>
       </group>
       <group id="group_9_rss_4" label="32035">
-        <setting id="group_9_rss_4_enable" type="boolean" label="32024" help="">
+        <setting id="group_9_rss_4_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -5192,7 +5192,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_4_name" type="string" label="556" help="">
+        <setting id="group_9_rss_4_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -5206,7 +5206,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_4_url" type="string" label="32022" help="">
+        <setting id="group_9_rss_4_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -5233,7 +5233,7 @@
         </setting>
       </group>
       <group id="group_9_rss_5" label="32036">
-        <setting id="group_9_rss_5_enable" type="boolean" label="32024" help="">
+        <setting id="group_9_rss_5_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -5241,7 +5241,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_5_name" type="string" label="556" help="">
+        <setting id="group_9_rss_5_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -5255,7 +5255,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_5_url" type="string" label="32022" help="">
+        <setting id="group_9_rss_5_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -5282,7 +5282,7 @@
         </setting>
       </group>
       <group id="group_9_rss_6" label="32037">
-        <setting id="group_9_rss_6_enable" type="boolean" label="32024" help="">
+        <setting id="group_9_rss_6_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -5290,7 +5290,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_6_name" type="string" label="556" help="">
+        <setting id="group_9_rss_6_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -5304,7 +5304,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_6_url" type="string" label="32022" help="">
+        <setting id="group_9_rss_6_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -5331,7 +5331,7 @@
         </setting>
       </group>
       <group id="group_9_rss_7" label="32038">
-        <setting id="group_9_rss_7_enable" type="boolean" label="32024" help="">
+        <setting id="group_9_rss_7_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -5339,7 +5339,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_7_name" type="string" label="556" help="">
+        <setting id="group_9_rss_7_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -5353,7 +5353,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_7_url" type="string" label="32022" help="">
+        <setting id="group_9_rss_7_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -5380,7 +5380,7 @@
         </setting>
       </group>
       <group id="group_9_rss_8" label="32039">
-        <setting id="group_9_rss_8_enable" type="boolean" label="32024" help="">
+        <setting id="group_9_rss_8_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -5388,7 +5388,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_8_name" type="string" label="556" help="">
+        <setting id="group_9_rss_8_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -5402,7 +5402,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_8_url" type="string" label="32022" help="">
+        <setting id="group_9_rss_8_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -5429,7 +5429,7 @@
         </setting>
       </group>
       <group id="group_9_rss_9" label="32040">
-        <setting id="group_9_rss_9_enable" type="boolean" label="32024" help="">
+        <setting id="group_9_rss_9_enable" type="boolean" label="32024" help="32217">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
@@ -5437,7 +5437,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_9_name" type="string" label="556" help="">
+        <setting id="group_9_rss_9_name" type="string" label="556" help="32218">
           <level>0</level>
           <default/>
           <constraints>
@@ -5451,7 +5451,7 @@
             <dependency type="visible" setting="group_9_enable">True</dependency>
           </dependencies>
         </setting>
-        <setting id="group_9_rss_9_url" type="string" label="32022" help="">
+        <setting id="group_9_rss_9_url" type="string" label="32022" help="32219">
           <level>0</level>
           <default/>
           <constraints>
@@ -5480,12 +5480,12 @@
     </category>
     <category id="misc" label="32050">
       <group id="group_misc" label="32050">
-        <setting id="anchor" type="boolean" label="32051" help="">
+        <setting id="anchor" type="boolean" label="32051" help="32220">
           <level>0</level>
           <default>false</default>
           <control type="toggle"/>
         </setting>
-        <setting id="limit_episodes" type="integer" label="32052" help="">
+        <setting id="limit_episodes" type="integer" label="32052" help="32221">
           <level>0</level>
           <default>0</default>
           <constraints>
