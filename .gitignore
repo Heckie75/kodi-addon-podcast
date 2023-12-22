@@ -2,3 +2,10 @@ __pycache__
 **/*.pyo
 gpodder.net.http
 nohup.out
+
+# http files
+*.http
+
+# batch files
+*.bat
+xcopy_exclude.txt
