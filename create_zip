@@ -9,6 +9,8 @@ if test -f "${ZIP}"; then
   rm -f ${ZIP}
 fi
 
+find -name __pycache__ -exec rm -rf {} \;
+
 zip -r ${ZIP} ${PLUGIN_ID} -x "*.git" "*LICENSE" "*README.md" "*.gitignore" "*__pycache__*" "*cpython-*"
 
 echo "${ZIP} successfully written"
